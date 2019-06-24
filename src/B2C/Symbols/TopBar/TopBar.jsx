@@ -16,7 +16,7 @@ const TopBar = () => {
             <MdWork />
           </div>
           <div className="corporate-text-spt">
-            <p>Corporate LOGIN</p>
+            <p>Corporate Login</p>
           </div>
         </div>
         <div className="signin-wrapper-spt">
