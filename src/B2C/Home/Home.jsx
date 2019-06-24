@@ -3,7 +3,7 @@ import React from "react";
 // Style Import
 import "./homestyle.css";
 
-// Component Importt
+// Component Import
 import TopBar from "../Symbols/TopBar/TopBar";
 import NavBar from "../Symbols/NavBar/NavBar";
 import MainArea from "../Home/MainArea/MainArea";
@@ -20,7 +20,7 @@ const Home = () => {
         <MainArea />
 
         <div className="infoarea-wrapper-spt">
-          <h1>Info Area</h1>
+          <h1>Info jjj</h1>
         </div>
       </div>
 
