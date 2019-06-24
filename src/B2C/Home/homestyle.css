@@ -1,0 +1,13 @@
+.main-container-spt {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../static/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 20px;
+}
+
+.infoarea-wrapper-spt {
+  height: 200px;
+  border: 1px solid rgb(228, 118, 255);
+}
