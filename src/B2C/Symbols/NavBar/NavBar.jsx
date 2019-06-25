@@ -11,7 +11,7 @@ const NavBar = () => {
 
         <div className="navbar-icon-wrapper-spt">
           <div className="navbar-icon-spt">
-            <MdFlight size='2.5rem'/>
+            <MdFlight size='2.5rem' style={{transform: "rotate(45deg)"}}/>
           </div>
           <div className="icon-text-spt">
               <p>Flight</p>
