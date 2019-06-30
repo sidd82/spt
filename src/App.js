@@ -13,7 +13,9 @@ import Home from "./B2C/Home/Home";
 function App() {
   return (
     <StateProvider initialState={initialState} reducer={searchReducer}>
-      <Home />
+      <div className="construction">
+        <h1>This site is in under construction</h1>
+      </div>
     </StateProvider>
   );
 }
