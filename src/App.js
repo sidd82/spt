@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Initial Store & Reducer
 import initialState from "./context/store";
@@ -9,13 +10,15 @@ import { StateProvider } from "./context/context";
 
 // Component Import
 import Home from "./B2C/Home/Home";
+import UnderConstruction from "./B2C/Construction/UnderConstruction";
 
 function App() {
   return (
     <StateProvider initialState={initialState} reducer={searchReducer}>
-      <div className="construction">
-        <h1>This site is in under construction</h1>
-      </div>
+      <Router>
+        <Route exact path="/" component={UnderConstruction} />
+        <Route path="/home" component={Home} />
+      </Router>
     </StateProvider>
   );
 }

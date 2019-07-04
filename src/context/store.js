@@ -1,5 +1,5 @@
 const initialState = {
-  search: {}
+  search: []
 };
 
 export default initialState;
