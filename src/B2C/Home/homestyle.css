@@ -67,6 +67,10 @@
 }
 
 @media only screen and (max-width: 1023px) {
+  .main-container-spt {
+    padding-top: 0px;
+  }
+
   .infoarea-wrapper-spt {
     display: none;
   }
