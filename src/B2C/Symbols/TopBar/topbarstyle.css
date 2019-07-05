@@ -208,8 +208,8 @@
   /* Position and sizing of burger button */
   .bm-burger-button {
     position: fixed;
-    width: 36px;
-    height: 25px;
+    width: 32px;
+    height: 20px;
     left: 25px;
     top: 36px;
   }
@@ -280,8 +280,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 @media only screen and (max-width: 321px) {
   .bm-burger-button {
     position: fixed;
-    width: 30px !important;
-    height: 20px !important;
+    width: 28px !important;
+    height: 17px !important;
     left: 15px !important;
     top: 36px !important;
   }
