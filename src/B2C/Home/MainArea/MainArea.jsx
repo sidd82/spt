@@ -8,9 +8,10 @@ import advertise from "../../../static/adam_taylor_emirates_dubai_mall.png";
 import "./mainareastyle.css";
 
 const MainArea = () => {
-  // State Store and Reducer
+  // Store with Global State and Reducer
   const [{ search }, dispatch] = useStateValue();
 
+  // Local State
   const [adult, setAdult] = useState(0);
   const [child, setChild] = useState(0);
   const [infant, setInfant] = useState(0);
