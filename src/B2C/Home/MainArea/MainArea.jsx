@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { useStateValue } from "../../../context/context";
 import { MdCompareArrows, MdAddCircle, MdRemoveCircle } from "react-icons/md";
@@ -7,7 +8,7 @@ import advertise from "../../../static/adam_taylor_emirates_dubai_mall.png";
 // Style Import
 import "./mainareastyle.css";
 
-const MainArea = () => {
+const MainArea = props => {
   // Store with Global State and Reducer
   const [{ search }, dispatch] = useStateValue();
 
@@ -51,10 +52,10 @@ const MainArea = () => {
       type: "ADD_SEARCH",
       searchResult: response.data.Response.Results[0]
     });
+    props.history.push("/flights");
   };
 
   const handleJourneyType = e => {
-    console.log(e.target.value);
     if (e.target.value === "OneWay") {
       setjourneyType(1);
     } else if (e.target.value === "Return") {
@@ -69,7 +70,6 @@ const MainArea = () => {
   };
 
   const handleCabinClass = e => {
-    console.log(e.target.value);
     if (e.target.value === "all") {
       setCabinClass(1);
     } else if (e.target.value === "economy") {
@@ -86,11 +86,8 @@ const MainArea = () => {
   };
 
   const handleDeparture = e => {
-    console.log(e.target.value);
     setDepartureTime(e.target.value + "T00: 00: 00");
   };
-
-  console.log(search);
 
   return (
     <div className="mainarea-wrapper-spt">
@@ -255,4 +252,4 @@ const MainArea = () => {
   );
 };
 
-export default MainArea;
+export default withRouter(MainArea);
