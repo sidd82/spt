@@ -60,7 +60,7 @@
 }
 
 @media only screen and (max-width: 1023px) {
-  .footer-container-spt {
+  .footer-wrapper-spt {
     display: none;
   }
 }
