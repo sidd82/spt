@@ -192,7 +192,11 @@ const MainArea = () => {
                   </select>
                 </div>
                 <div className="departure-date-spt">
-                  <input type="date" onChange={handleDeparture} />
+                  <input
+                    type="date"
+                    onChange={handleDeparture}
+                    data-placeholder="Departure Date"
+                  />
                 </div>
               </div>
               <div className="person-wrapper-spt">
@@ -363,7 +367,11 @@ const MainArea = () => {
               </select>
             </div>
             <div className="departure-date-spt">
-              <input type="date" onChange={handleDeparture} />
+              <input
+                type="date"
+                onChange={handleDeparture}
+                data-placeholder="Departure Date"
+              />
             </div>
 
             <div className="mob-person-wrapper-spt">

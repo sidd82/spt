@@ -205,6 +205,11 @@
   opacity: 0;
 }
 
+.departure-date-spt input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+
 .departure-date-spt input[type="date"] {
   width: 260px;
   padding: 10px 10px;
@@ -369,7 +374,7 @@
     display: flex;
     width: 90%;
     height: 100%;
-    background-color: #ffffffdd;
+    background-color: #ffffff;
     border-radius: 0 0 20px 20px;
   }
 
@@ -485,9 +490,9 @@
     height: 35px;
     padding: 15px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -518,9 +523,9 @@
     height: 35px;
     padding: 15px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -539,9 +544,10 @@
     margin-top: 15px;
     padding: 5px;
     display: inline-block;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: none;
     border-radius: 4px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -568,13 +574,18 @@
     opacity: 0;
   }
 
+  .departure-date-spt input[type="date"]::before {
+    content: attr(data-placeholder);
+    width: 100%;
+  }
+
   .departure-date-spt input[type="date"] {
     width: 90%;
     padding: 8px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -597,7 +608,7 @@
     margin-top: 15px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .adult-count-spt p {
@@ -624,7 +635,7 @@
     margin-top: 15px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .children-count-spt p {
@@ -651,7 +662,7 @@
     margin-top: 15px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .infant-count-spt p {
@@ -681,6 +692,7 @@
     width: 260px;
     height: 35px;
     background-color: #0092cf;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     border: none;
     color: white;
     text-align: center;
@@ -695,6 +707,7 @@
     height: 35px;
     margin-right: 20px;
     background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     border: none;
     text-align: center;
     border-radius: 5px;
