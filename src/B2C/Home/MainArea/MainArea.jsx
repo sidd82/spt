@@ -266,7 +266,7 @@ const MainArea = () => {
       </div>
       <div className="mob-mainarea-wrapper-spt">
         <div className="mob-mainarea-spt">
-          <form className="mob-form-wrapper-spt">
+          <form onSubmit={handleSubmit} className="mob-form-wrapper-spt">
             <div className="formtitle-wrapper-spt">
               <h1>Save on Flights</h1>
               <p>Honest Pricing. Genuine Savings.</p>
