@@ -94,6 +94,7 @@
     position: absolute;
     top: 100%;
     left: 4%;
+    z-index: 999;
     margin-top: 5px;
     display: flex;
     align-items: center;
