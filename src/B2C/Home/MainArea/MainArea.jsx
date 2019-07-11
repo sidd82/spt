@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { useStateValue } from "../../../context/context";
+import moment from "moment";
 import {
   MdCompareArrows,
   MdAddCircle,
@@ -13,6 +14,7 @@ import advertise from "../../../static/adam_taylor_emirates_dubai_mall.png";
 
 // Style Import
 import "./mainareastyle.css";
+import { importSpecifier } from "@babel/types";
 
 const MainArea = props => {
   // Store with Global State and Reducer
@@ -50,10 +52,12 @@ const MainArea = props => {
         }
       ]
     };
+    console.log(moment(Date.now()).format("LTS"));
     const response = await axios.post(
       "https://savepertrip.in/api/search",
       searchData
     );
+    console.log(moment(Date.now()).format("LTS"));
     dispatch({
       type: "ADD_SEARCH",
       searchResult: response.data.Response.Results[0]

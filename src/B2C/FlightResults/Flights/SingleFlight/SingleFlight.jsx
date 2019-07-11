@@ -142,7 +142,7 @@ const SingleFlight = ({ flight }) => {
       {/* Price Part */}
       <div className="single-flight-spt">
         <div className="price-area-sf-spt">
-          <p>1</p>
+          <h4>{`Rs. ${flight.Fare.PublishedFare}`}</h4>
         </div>
         <div className="price-area-sf-spt">
           <p>2</p>
