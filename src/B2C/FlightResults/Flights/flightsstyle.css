@@ -10,23 +10,76 @@
 .flight-inner-flight-spt {
   width: 100%;
   height: 93%;
-  padding-left: 20px;
+  padding-left: 10x;
   overflow-y: scroll;
 }
 
 .top-section-wrapper-spt {
-  padding-left: 30px;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #c5c5c5;
+  margin-bottom: 5px;
 }
 
 .top-section-flight-spt {
   position: sticky;
   display: flex;
-  width: 100%;
+  width: 99%;
   height: 50px;
 }
 
-.top-section-item-flight-spt {
+.top-airline-section-item-flight-spt {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #212121;
+}
+
+.top-depart-section-item-flight-spt {
+  display: flex;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  padding-left: 10px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #212121;
+}
+
+.top-arrival-section-item-flight-spt {
+  display: flex;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  padding-left: 10px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #212121;
+}
+
+.top-duration-section-item-flight-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #212121;
+}
+
+.top-price-section-item-flight-spt {
+  display: flex;
+  justify-content: center;
   align-items: center;
   width: 15%;
   height: 100%;

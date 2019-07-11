@@ -47,9 +47,9 @@ const SingleFlight = ({ flight }) => {
       <div className="single-flight-spt">
         <div className="departure-area-sf-spt">
           <div className="icon-departure-sf-spt">
-            <MdInsertInvitation size="1.5rem" color="#212121" />
+            <MdInsertInvitation size="1.2rem" color="#707070" />
           </div>
-          <div className="text-departure-sf-spt">
+          <div className="title-departure-sf-spt">
             <p>
               {moment(flight.Segments[0][0].Origin.DepTime).format("MMM Do YY")}
             </p>
@@ -58,7 +58,7 @@ const SingleFlight = ({ flight }) => {
 
         <div className="departure-area-sf-spt">
           <div className="icon-departure-sf-spt">
-            <MdAccessTime size="1.5rem" color="#212121" />
+            <MdAccessTime size="1.2rem" color="#707070" />
           </div>
           <div className="text-departure-sf-spt">
             <p>{moment(flight.Segments[0][0].Origin.DepTime).format("LT")}</p>
@@ -67,7 +67,7 @@ const SingleFlight = ({ flight }) => {
 
         <div className="departure-area-sf-spt">
           <div className="icon-departure-sf-spt">
-            <MdPlace size="1.5rem" color="#212121" />
+            <MdPlace size="1.2rem" color="#707070" />
           </div>
           <div className="text-departure-sf-spt">
             <p>{flight.Segments[0][0].Origin.Airport.CityName}</p>
@@ -86,9 +86,9 @@ const SingleFlight = ({ flight }) => {
       <div className="single-flight-spt">
         <div className="arrival-area-sf-spt">
           <div className="icon-arrival-sf-spt">
-            <MdInsertInvitation size="1.5rem" color="#212121" />
+            <MdInsertInvitation size="1.2rem" color="#707070" />
           </div>
-          <div className="text-arrival-sf-spt">
+          <div className="title-arrival-sf-spt">
             <p>
               {moment(flight.Segments[0][0].Destination.ArrTime).format(
                 "MMM Do YY"
@@ -99,7 +99,7 @@ const SingleFlight = ({ flight }) => {
 
         <div className="arrival-area-sf-spt">
           <div className="icon-arrival-sf-spt">
-            <MdAccessTime size="1.5rem" color="#212121" />
+            <MdAccessTime size="1.2rem" color="#707070" />
           </div>
           <div className="text-arrival-sf-spt">
             <p>
@@ -110,7 +110,7 @@ const SingleFlight = ({ flight }) => {
 
         <div className="arrival-area-sf-spt">
           <div className="icon-arrival-sf-spt">
-            <MdPlace size="1.5rem" color="#212121" />
+            <MdPlace size="1.2rem" color="#707070" />
           </div>
           <div className="text-arrival-sf-spt">
             <p>{flight.Segments[0][0].Destination.Airport.CityName}</p>
@@ -130,6 +130,7 @@ const SingleFlight = ({ flight }) => {
             <p>{flight.Segments[0][0].StopOver ? "Stop Over" : "Nonstop"}</p>
           </div>
         </div>
+        <br />
         {/*
         <div className="duration-area-sf-spt">
           <div className="text-duration-sf-spt">
@@ -142,10 +143,12 @@ const SingleFlight = ({ flight }) => {
       {/* Price Part */}
       <div className="single-flight-spt">
         <div className="price-area-sf-spt">
-          <h4>{`Rs. ${flight.Fare.PublishedFare}`}</h4>
+          <h4>{`₹ ${Math.round(flight.Fare.PublishedFare)}`}</h4>
         </div>
         <div className="price-area-sf-spt">
-          <p>2</p>
+          <div className="book-button-sf-spt">
+            <p>Book Now</p>
+          </div>
         </div>
       </div>
     </div>

@@ -14,20 +14,20 @@ const Flights = () => {
     <div className="flight-results-flight-spt">
       <div className="top-section-wrapper-spt">
         <div className="top-section-flight-spt">
-          <div className="top-section-item-flight-spt">
+          <div className="top-airline-section-item-flight-spt">
             <p>Airline</p>
           </div>
-          <div className="top-section-item-flight-spt">
+          <div className="top-depart-section-item-flight-spt">
             <p>Departure</p>
           </div>
           <div className="top-section-item-flight-spt middle-big-spt" />
-          <div className="top-section-item-flight-spt">
+          <div className="top-arrival-section-item-flight-spt">
             <p>Arrival</p>
           </div>
-          <div className="top-section-item-flight-spt">
+          <div className="top-duration-section-item-flight-spt">
             <p>Duration</p>
           </div>
-          <div className="top-section-item-flight-spt">
+          <div className="top-price-section-item-flight-spt">
             <p>Price</p>
           </div>
         </div>
