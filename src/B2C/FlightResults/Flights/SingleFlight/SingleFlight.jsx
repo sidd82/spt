@@ -4,11 +4,15 @@ import {
   MdCloudDownload,
   MdPictureAsPdf,
   MdAssessment,
-  MdAccessTime
+  MdAccessTime,
+  MdInsertInvitation,
+  MdPlace
 } from "react-icons/md";
+import moment from "moment";
 
 const SingleFlight = ({ flight }) => {
-  console.log(flight.Segments[0][0].Origin.DepTime);
+  let timeInMinute = flight.Segments[0][0].Duration;
+  console.log(flight.Fare.PublishedFare);
   return (
     <div className="single-flight-wrapper-spt">
       {/* Airline Part */}
@@ -43,28 +47,30 @@ const SingleFlight = ({ flight }) => {
       <div className="single-flight-spt">
         <div className="departure-area-sf-spt">
           <div className="icon-departure-sf-spt">
+            <MdInsertInvitation size="1.5rem" color="#212121" />
+          </div>
+          <div className="text-departure-sf-spt">
+            <p>
+              {moment(flight.Segments[0][0].Origin.DepTime).format("MMM Do YY")}
+            </p>
+          </div>
+        </div>
+
+        <div className="departure-area-sf-spt">
+          <div className="icon-departure-sf-spt">
             <MdAccessTime size="1.5rem" color="#212121" />
           </div>
           <div className="text-departure-sf-spt">
-            <p>20, June</p>
+            <p>{moment(flight.Segments[0][0].Origin.DepTime).format("LT")}</p>
           </div>
         </div>
 
         <div className="departure-area-sf-spt">
           <div className="icon-departure-sf-spt">
-            <p>1</p>
+            <MdPlace size="1.5rem" color="#212121" />
           </div>
           <div className="text-departure-sf-spt">
-            <p>2</p>
-          </div>
-        </div>
-
-        <div className="departure-area-sf-spt">
-          <div className="icon-departure-sf-spt">
-            <p>1</p>
-          </div>
-          <div className="text-departure-sf-spt">
-            <p>2</p>
+            <p>{flight.Segments[0][0].Origin.Airport.CityName}</p>
           </div>
         </div>
       </div>
@@ -79,27 +85,58 @@ const SingleFlight = ({ flight }) => {
       {/* Arrival Part */}
       <div className="single-flight-spt">
         <div className="arrival-area-sf-spt">
-          <p>1</p>
+          <div className="icon-arrival-sf-spt">
+            <MdInsertInvitation size="1.5rem" color="#212121" />
+          </div>
+          <div className="text-arrival-sf-spt">
+            <p>
+              {moment(flight.Segments[0][0].Destination.ArrTime).format(
+                "MMM Do YY"
+              )}
+            </p>
+          </div>
         </div>
+
         <div className="arrival-area-sf-spt">
-          <p>2</p>
+          <div className="icon-arrival-sf-spt">
+            <MdAccessTime size="1.5rem" color="#212121" />
+          </div>
+          <div className="text-arrival-sf-spt">
+            <p>
+              {moment(flight.Segments[0][0].Destination.ArrTime).format("LT")}
+            </p>
+          </div>
         </div>
+
         <div className="arrival-area-sf-spt">
-          <p>3</p>
+          <div className="icon-arrival-sf-spt">
+            <MdPlace size="1.5rem" color="#212121" />
+          </div>
+          <div className="text-arrival-sf-spt">
+            <p>{flight.Segments[0][0].Destination.Airport.CityName}</p>
+          </div>
         </div>
       </div>
 
       {/* Duration Part */}
       <div className="single-flight-spt">
         <div className="duration-area-sf-spt">
-          <p>1</p>
+          <div className="text-duration-sf-spt">
+            {Math.floor(timeInMinute / 60) + "h " + (timeInMinute % 60) + "m"}
+          </div>
         </div>
         <div className="duration-area-sf-spt">
-          <p>2</p>
+          <div className="text-duration-sf-spt">
+            <p>{flight.Segments[0][0].StopOver ? "Stop Over" : "Nonstop"}</p>
+          </div>
         </div>
+        {/*
         <div className="duration-area-sf-spt">
-          <p>3</p>
+          <div className="text-duration-sf-spt">
+            <p>1</p>
+          </div>
         </div>
+        */}
       </div>
 
       {/* Price Part */}
