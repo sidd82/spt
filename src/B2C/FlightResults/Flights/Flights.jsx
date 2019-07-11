@@ -35,7 +35,7 @@ const Flights = () => {
       <div className="flight-inner-flight-spt">
         {search &&
           search.map((flight, index) => (
-            <SingleFlight key={index} flight={flight} />
+            <SingleFlight key={index} flight={flight} index={index} />
           ))}
       </div>
     </div>

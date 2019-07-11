@@ -1,9 +1,9 @@
 .footer-container-spt {
   display: flex;
-  height: 300px;
+  height: 330px;
   background-color: #ffffff;
   margin-top: 40px;
-  padding: 0 50px;
+  padding: 40px;
 }
 
 .footer-list-spt {

@@ -12,6 +12,7 @@ import { StateProvider } from "./context/context";
 import Home from "./B2C/Home/Home";
 import UnderConstruction from "./B2C/Construction/UnderConstruction";
 import FlightResults from "./B2C/FlightResults/FlightResults";
+import FlightBooking from "./B2C/FlightBooking/FlightBooking";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/" component={UnderConstruction} />
         <Route path="/home" component={Home} />
         <Route path="/flights" component={FlightResults} />
+        <Route path="/bookflight/:index" component={FlightBooking} />
       </Router>
     </StateProvider>
   );

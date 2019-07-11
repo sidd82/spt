@@ -1,5 +1,6 @@
 import React from "react";
 import "./singleflightstyle.css";
+import { withRouter } from "react-router-dom";
 import {
   MdCloudDownload,
   MdPictureAsPdf,
@@ -10,9 +11,10 @@ import {
 } from "react-icons/md";
 import moment from "moment";
 
-const SingleFlight = ({ flight }) => {
+const SingleFlight = ({ flight, index, history }) => {
   let timeInMinute = flight.Segments[0][0].Duration;
-  console.log(flight.Fare.PublishedFare);
+  // console.log(flight.Fare.PublishedFare);
+  console.log(history);
   return (
     <div className="single-flight-wrapper-spt">
       {/* Airline Part */}
@@ -146,7 +148,10 @@ const SingleFlight = ({ flight }) => {
           <h4>{`₹ ${Math.round(flight.Fare.PublishedFare)}`}</h4>
         </div>
         <div className="price-area-sf-spt">
-          <div className="book-button-sf-spt">
+          <div
+            className="book-button-sf-spt"
+            onClick={() => history.push(`/bookflight/${index}`)}
+          >
             <p>Book Now</p>
           </div>
         </div>
@@ -155,4 +160,4 @@ const SingleFlight = ({ flight }) => {
   );
 };
 
-export default SingleFlight;
+export default withRouter(SingleFlight);
