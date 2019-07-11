@@ -18,7 +18,7 @@ const SearchAgainForm = () => {
       <form>
         <div className="search-form-container-spt">
           <div className="type-modify-search-spt">
-            <div className="select-type-spt">
+            <div className="select-modify-type-spt">
               <p>TRIP TYPE</p>
               <select name="type">
                 <option value="all">Select Type</option>
@@ -38,7 +38,7 @@ const SearchAgainForm = () => {
               // onChange={e => setOrigin(e.target.value)}
             />
           </div>
-          <div className="destinationicon-wrapper-spt">
+          <div className="destinationicon-modify-wrapper-spt">
             <MdCompareArrows size="1.8rem" color="#484848" />
           </div>
           <div className="arrivalto-modify-search-spt">
@@ -76,7 +76,7 @@ const SearchAgainForm = () => {
               >
                 <div className="passengercountcontainer-spt">
                   <div className="passengercountlist1">
-                    <div className="select-class-spt">
+                    <div className="select-modify-class-spt">
                       <select name="classtype">
                         <option value="all">All Class</option>
                         <option value="economy">Economy</option>
@@ -86,14 +86,14 @@ const SearchAgainForm = () => {
                         <option value="first">First</option>
                       </select>
                     </div>
-                    <div className="adult-count-spt">
+                    <div className="adult-modify-count-spt">
                       <MdRemoveCircle
                         size="1.2rem"
                         color="#484848"
                         // onClick={() => setAdult(adult - 1)}
                       />
                       <p>
-                        Adult <span className="adultcounter-spt">0</span>
+                        Adult <span className="adultcounter-modify-spt">0</span>
                       </p>
                       <MdAddCircle
                         size="1.2rem"
@@ -103,14 +103,15 @@ const SearchAgainForm = () => {
                     </div>
                   </div>
                   <div className="passengercountlist2">
-                    <div className="children-count-spt">
+                    <div className="children-modify-count-spt">
                       <MdRemoveCircle
                         size="1.2rem"
                         color="#484848"
                         // onClick={() => setAdult(adult - 1)}
                       />
                       <p>
-                        Children <span className="childrencounter-spt">0</span>
+                        Children{" "}
+                        <span className="childrencounter-modify-spt">0</span>
                       </p>
                       <MdAddCircle
                         size="1.2rem"
@@ -118,14 +119,15 @@ const SearchAgainForm = () => {
                         // onClick={() => setAdult(adult + 1)}
                       />
                     </div>
-                    <div className="infant-count-spt">
+                    <div className="infant-modify-count-spt">
                       <MdRemoveCircle
                         size="1.2rem"
                         color="#484848"
                         // onClick={() => setAdult(adult - 1)}
                       />
                       <p>
-                        Infant <span className="infantcounter-spt">0</span>
+                        Infant{" "}
+                        <span className="infantcounter-modify-spt">0</span>
                       </p>
                       <MdAddCircle
                         size="1.2rem"
