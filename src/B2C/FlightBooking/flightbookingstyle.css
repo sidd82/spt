@@ -97,8 +97,467 @@
   align-items: center;
   width: 100%;
   height: 75%;
-  padding: 0px 20px;
+  padding-top: 25px;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 14px;
+}
+
+.flightbooking-airline-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-airline-details-fb-spt h3 {
+  color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.flightbooking-airline-details-fb-spt p {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px 0px;
+}
+
+.flightbooking-depart-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-depart-details-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.flightbooking-depart-details-fb-spt h3 span {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.flightbooking-depart-details-fb-spt p {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+.flightbooking-arrival-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-arrival-details-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.flightbooking-arrival-details-fb-spt h3 span {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.flightbooking-arrival-details-fb-spt p {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+.flightbooking-refund-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-refund-details-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.flightbooking-refund-details-fb-spt p {
+  color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.flightbooking-stops-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-stops-details-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.flightbooking-duration-details-fb-spt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.flightbooking-duration-details-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.flightbooking-price-details-fb-spt {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 75%;
+  padding: 0px 20px;
+}
+
+.flightbooking-price-baseprice-fb-spt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flightbooking-price-baseprice-fb-spt h3 {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.flightbooking-price-baseprice-fb-spt p {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.flightbooking-price-tax-fb-spt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flightbooking-price-tax-fb-spt h3 {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.flightbooking-price-tax-fb-spt p {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.flightbooking-price-totalprice-fb-spt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flightbooking-price-totalprice-fb-spt h3 {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.flightbooking-price-totalprice-fb-spt p {
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.flightbooking-passenger-head-fb-spt {
+  color: #484848;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.flightbooking-passenger-mainform-fb-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.flightbooking-pass-formwrap-fb-spt {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  padding: 10px 25px;
+}
+
+.flightbooking-pass-name-fb-spt {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-name-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-pass-name-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-mobile-fb-spt {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-mobile-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-pass-mobile-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-email-fb-spt {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-email-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-pass-email-fb-spt input[type="email"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-dob-fb-spt {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-dob-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.dob-details-fb-spt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.dob-details-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  margin: 0px 2px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-address-fb-spt {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-address-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-pass-address-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-city-fb-spt {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-pass-city-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-pass-city-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.flightbooking-pass-postal-fb-spt {
+  display: flex;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.country-details-fb-spt {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.country-details-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.country-details-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.postal-details-fb-spt {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.postal-details-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.postal-details-fb-spt input[type="text"] {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
 }
