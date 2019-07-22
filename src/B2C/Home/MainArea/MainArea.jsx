@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
 import moment from "moment";
 import {
   MdCompareArrows,
@@ -11,11 +10,16 @@ import {
 } from "react-icons/md";
 import advertise from "../../../static/adam_taylor_emirates_dubai_mall.png";
 
+// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
+import { useStoreActions } from "easy-peasy";
+
 // Style Import
 import "./mainareastyle.css";
-import { importSpecifier } from "@babel/types";
 
 const MainArea = props => {
+  // Getting Dispatch Method To Get Flights
+  const getFlights = useStoreActions(actions => actions.flights.getFlights);
+
   // Local State
   const [adult, setAdult] = useState(0);
   const [child, setChild] = useState(0);
@@ -48,13 +52,16 @@ const MainArea = props => {
         }
       ]
     };
-    console.log(moment(Date.now()).format("LTS"));
-    const response = await axios.post(
-      "https://savepertrip.in/api/search",
-      searchData
-    );
-    console.log(moment(Date.now()).format("LTS"));
-    props.history.push("/flights");
+
+    // Creating A Payload To Send Because We Have To Send Two Things To Thunk Action
+    // One: Flight Request Data & Two: History Object To Push
+    const payload = {
+      flightRequest: searchData,
+      history: props.history
+    };
+
+    // Calling The Actions
+    getFlights(payload);
   };
 
   const handleJourneyType = e => {

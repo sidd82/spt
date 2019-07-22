@@ -1,5 +1,8 @@
 import React from "react";
 
+// Importing useStoreState From EasyPeasy To Get State;
+import { useStoreState } from "easy-peasy";
+
 // Components Import
 import SingleFlight from "./SingleFlight/SingleFlight";
 
@@ -7,6 +10,8 @@ import SingleFlight from "./SingleFlight/SingleFlight";
 import "./flightsstyle.css";
 
 const Flights = () => {
+  // Getting The Global State
+  const flightResults = useStoreState(state => state.flights.flightResults);
   return (
     <div className="flight-results-flight-spt">
       <div className="top-section-wrapper-spt">
@@ -30,10 +35,10 @@ const Flights = () => {
         </div>
       </div>
       <div className="flight-inner-flight-spt">
-        {/* Here To Render Search  {search &&
-          search.map((flight, index) => (
+        {flightResults &&
+          flightResults.map((flight, index) => (
             <SingleFlight key={index} flight={flight} index={index} />
-          ))} */}
+          ))}
       </div>
     </div>
   );

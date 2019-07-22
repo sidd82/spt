@@ -4,10 +4,20 @@ import App from "./App";
 import { AppContainer } from "react-hot-loader";
 import * as serviceWorker from "./serviceWorker";
 
+// Import The Store & Provider From EasyPeasy
+import { StoreProvider, createStore } from "easy-peasy";
+
+// Importing Model
+import model from "./store/model";
+
+const store = createStore(model);
+
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <App />
+      <StoreProvider store={store}>
+        <App />
+      </StoreProvider>
     </AppContainer>,
     document.getElementById("root")
   );
