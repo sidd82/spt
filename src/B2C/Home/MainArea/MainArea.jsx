@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { useStateValue } from "../../../context/context";
 import moment from "moment";
 import {
   MdCompareArrows,
@@ -17,9 +16,6 @@ import "./mainareastyle.css";
 import { importSpecifier } from "@babel/types";
 
 const MainArea = props => {
-  // Store with Global State and Reducer
-  const [{ search }, dispatch] = useStateValue();
-
   // Local State
   const [adult, setAdult] = useState(0);
   const [child, setChild] = useState(0);
@@ -58,10 +54,6 @@ const MainArea = props => {
       searchData
     );
     console.log(moment(Date.now()).format("LTS"));
-    dispatch({
-      type: "ADD_SEARCH",
-      searchResult: response.data.Response.Results[0]
-    });
     props.history.push("/flights");
   };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { useStateValue } from "../../context/context";
 
 // CSS Import
 import "./flightbookingstyle.css";
@@ -10,10 +9,8 @@ import NavBar from "../Symbols/NavBar/NavBar";
 import Footer from "../Symbols/Footer/Footer";
 
 const FlightBooking = props => {
-  // console.log(props.match.params.index);
-
-  const [{ search }, dispatch] = useStateValue();
-  console.log(search[props.match.params.index]);
+  // Keep In Mind Last Line
+  // console.log(search[props.match.params.index]);
 
   return (
     <div>
