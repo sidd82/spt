@@ -19,6 +19,9 @@ import "./mainareastyle.css";
 const MainArea = props => {
   // Getting Dispatch Method To Get Flights
   const getFlights = useStoreActions(actions => actions.flights.getFlights);
+  const toggleIsLoading = useStoreActions(
+    actions => actions.ui.toggleIsLoading
+  );
 
   // Local State
   const [adult, setAdult] = useState(0);
@@ -33,6 +36,7 @@ const MainArea = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    toggleIsLoading(true);
     const searchData = {
       EndUserIp: "",
       TokenId: "",

@@ -18,10 +18,15 @@ import MainArea from "../Home/MainArea/MainArea";
 import Footer from "../Symbols/Footer/Footer";
 import FlightsLoading from "../utilsComponents/FlightsLoading";
 
+// Accessing State from EasyPeasy
+import { useStoreState } from "easy-peasy";
+
 const Home = () => {
+  const isLoading = useStoreState(state => state.ui.isLoading);
+  console.log(isLoading);
   return (
-    <div>
-      <FlightsLoading />
+    <div style={{ position: "relative" }}>
+      {isLoading && <FlightsLoading />}
 
       <div className="main-container-spt">
         <TopBar />

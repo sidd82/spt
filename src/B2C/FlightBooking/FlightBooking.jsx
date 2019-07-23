@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useStoreState } from "easy-peasy";
 import moment from "moment";
 
@@ -16,8 +16,39 @@ const FlightBooking = props => {
   );
   let timeInMinute = searchFlight.Segments[0][0].Duration;
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
-  console.log(searchFlight);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  });
+
+  const paymentHandler = e => {
+    e.preventDefault();
+
+    let options = {
+      key: "rzp_test_2g4ouZkn05v9CF",
+      amount: +searchFlight.Fare.PublishedFare * 100,
+      name: "Rahul",
+      description: "flight",
+      handler: res => {
+        alert(res.razorpay_payment_id);
+      },
+      prefill: {
+        name: "Kartish pitale",
+        email: "pitale.kartish@gmail.com"
+      },
+      notes: {
+        address: "Hello world"
+      }
+    };
+
+    let rzp = new window.Razorpay(options);
+    rzp.open();
+  };
   // Keep In Mind Last Line
   // console.log(search[props.match.params.index]);
 
@@ -203,10 +234,11 @@ const FlightBooking = props => {
                   </div>
                 </div>
               </div>
+
+              <button onClick={paymentHandler}>Book Now</button>
             </form>
           </div>
         </div>
-
         <Footer />
       </div>
     </div>
