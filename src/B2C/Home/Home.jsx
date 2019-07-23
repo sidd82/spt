@@ -16,10 +16,13 @@ import TopBar from "../Symbols/TopBar/TopBar";
 import NavBar from "../Symbols/NavBar/NavBar";
 import MainArea from "../Home/MainArea/MainArea";
 import Footer from "../Symbols/Footer/Footer";
+import FlightsLoading from "../utilsComponents/FlightsLoading";
 
 const Home = () => {
   return (
     <div>
+      <FlightsLoading />
+
       <div className="main-container-spt">
         <TopBar />
 
