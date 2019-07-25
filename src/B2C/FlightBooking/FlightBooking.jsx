@@ -9,13 +9,44 @@ import "./flightbookingstyle.css";
 import TopBar from "../Symbols/TopBar/TopBar";
 import NavBar from "../Symbols/NavBar/NavBar";
 import Footer from "../Symbols/Footer/Footer";
+import PassengerBookingForm from "./PassengerBookingForm";
 
 const FlightBooking = props => {
   const searchFlight = useStoreState(
     state => state.flights.flightResults[props.match.params.index]
   );
+  const userSearchData = useStoreState(state => state.ui.userSearchData);
   let timeInMinute = searchFlight.Segments[0][0].Duration;
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
+
+  const createPassengerForm = (name, countName) => {
+    const passName = name;
+    const passengerForm = [];
+    const totalPassenger =
+      userSearchData.AdultCount +
+      userSearchData.ChildCount +
+      userSearchData.InfantCount;
+    let passengerCount;
+
+    if (countName === "adultCount") {
+      passengerCount = userSearchData.AdultCount;
+    } else if (countName === "childCount") {
+      passengerCount = userSearchData.ChildCount;
+    } else if (countName === "infantCount") {
+      passengerCount = userSearchData.InfantCount;
+    }
+
+    for (let i = 0; i < passengerCount; i++) {
+      passengerForm.push(
+        <PassengerBookingForm
+          adult={passengerCount}
+          passName={passName}
+          totalPassenger={totalPassenger}
+        />
+      );
+    }
+    return passengerForm;
+  };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -234,6 +265,11 @@ const FlightBooking = props => {
                   </div>
                 </div>
               </div>
+
+              {/* Passengers Part */}
+              {createPassengerForm("Adult", "adultCount").map(e => e)}
+              {createPassengerForm("Child", "childCount").map(e => e)}
+              {createPassengerForm("Infant", "infantCount").map(e => e)}
 
               <button onClick={paymentHandler}>Book Now</button>
             </form>

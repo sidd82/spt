@@ -14,7 +14,6 @@ import moment from "moment";
 const SingleFlight = ({ flight, index, history }) => {
   let timeInMinute = flight.Segments[0][0].Duration;
   // console.log(flight.Fare.PublishedFare);
-  console.log(history);
   return (
     <div className="single-flight-wrapper-spt">
       {/* Airline Part */}

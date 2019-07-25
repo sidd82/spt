@@ -35,8 +35,12 @@ const flightsModel = {
 
 const uiModel = {
   isLoading: false,
+  userSearchData: {},
   toggleIsLoading: action((state, payload) => {
     state.isLoading = payload;
+  }),
+  addUserSearchData: action((state, payload) => {
+    state.userSearchData = payload;
   })
 };
 

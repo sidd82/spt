@@ -22,6 +22,9 @@ const MainArea = props => {
   const toggleIsLoading = useStoreActions(
     actions => actions.ui.toggleIsLoading
   );
+  const addUserSearchData = useStoreActions(
+    actions => actions.ui.addUserSearchData
+  );
 
   // Local State
   const [adult, setAdult] = useState(0);
@@ -37,6 +40,11 @@ const MainArea = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     toggleIsLoading(true);
+    const searchInputData = {
+      AdultCount: adult,
+      ChildCount: child,
+      InfantCount: infant
+    };
     const searchData = {
       EndUserIp: "",
       TokenId: "",
@@ -66,6 +74,7 @@ const MainArea = props => {
 
     // Calling The Actions
     getFlights(payload);
+    addUserSearchData(searchInputData);
   };
 
   const handleJourneyType = e => {
