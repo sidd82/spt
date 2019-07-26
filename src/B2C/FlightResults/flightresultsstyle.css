@@ -7,6 +7,10 @@
   padding-top: 20px;
 }
 
+.mob-flights-wrapper-fr-spt {
+  display: none;
+}
+
 .search-again-fr-spt {
   width: 100%;
   height: 150px;
@@ -21,4 +25,17 @@
   height: 600px;
   margin-top: -5px;
   padding: 0 50px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main-container-fr-spt {
+    display: none;
+  }
+
+  .mob-flights-wrapper-fr-spt {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
 }

@@ -18,6 +18,7 @@ const FlightBooking = props => {
   const userSearchData = useStoreState(state => state.ui.userSearchData);
   let timeInMinute = searchFlight.Segments[0][0].Duration;
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
+  let count = 1;
 
   const createPassengerForm = (name, countName) => {
     const passName = name;
@@ -29,7 +30,7 @@ const FlightBooking = props => {
     let passengerCount;
 
     if (countName === "adultCount") {
-      passengerCount = userSearchData.AdultCount;
+      passengerCount = userSearchData.AdultCount - 1;
     } else if (countName === "childCount") {
       passengerCount = userSearchData.ChildCount;
     } else if (countName === "infantCount") {
@@ -37,11 +38,13 @@ const FlightBooking = props => {
     }
 
     for (let i = 0; i < passengerCount; i++) {
+      count = count + 1;
       passengerForm.push(
         <PassengerBookingForm
           adult={passengerCount}
           passName={passName}
-          totalPassenger={totalPassenger}
+          totalPassenger={count}
+          key={count}
         />
       );
     }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import moment from "moment";
 import {
   MdCompareArrows,
   MdAddCircle,
@@ -27,7 +26,7 @@ const MainArea = props => {
   );
 
   // Local State
-  const [adult, setAdult] = useState(0);
+  const [adult, setAdult] = useState(1);
   const [child, setChild] = useState(0);
   const [infant, setInfant] = useState(0);
   const [directFlight, setDirectFlight] = useState(false);

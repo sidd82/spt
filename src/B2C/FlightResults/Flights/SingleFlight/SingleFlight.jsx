@@ -1,6 +1,11 @@
 import React from "react";
-import "./singleflightstyle.css";
 import { withRouter } from "react-router-dom";
+import moment from "moment";
+
+// CSS Import
+import "./singleflightstyle.css";
+
+// Icons Import
 import {
   MdCloudDownload,
   MdPictureAsPdf,
@@ -9,7 +14,6 @@ import {
   MdInsertInvitation,
   MdPlace
 } from "react-icons/md";
-import moment from "moment";
 
 const SingleFlight = ({ flight, index, history }) => {
   let timeInMinute = flight.Segments[0][0].Duration;

@@ -1,0 +1,137 @@
+.mob-singleflight-card-spt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 25%;
+  margin: 5px 0px;
+  padding: 10px 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mob-singleflight-details-spt {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.mob-singleflight-flights-spt {
+  display: flex;
+  width: 80%;
+  height: 100%;
+}
+
+.mob-singleflight-price-spt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  height: 100%;
+}
+
+.mob-singleflight-price-spt p {
+  margin: 10px 0px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #0092cf;
+}
+
+.mob-book-button-sf-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 65px;
+  background-color: #0092cf;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mob-book-button-sf-spt p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  color: white;
+}
+
+.mob-singleflight-depart-spt {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+}
+
+.mob-singleflight-depart-spt h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #212121;
+}
+
+.mob-singleflight-depart-spt p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #aaaaaa;
+}
+
+.mob-singleflight-gap-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.mob-singleflight-arrival-spt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.mob-singleflight-arrival-spt h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #212121;
+}
+
+.mob-singleflight-arrival-spt p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #aaaaaa;
+}
+
+.mob-singleflight-summary-spt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+}
+
+.mob-singleflight-summary-spt p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #777777;
+}
+
+.mob-singleflight-duration-spt {
+  color: #484848;
+}
+
+.mob-singleflight-airline-spt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+}
+
+.mob-singleflight-airline-spt p {
+  margin-left: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0092cf;
+}

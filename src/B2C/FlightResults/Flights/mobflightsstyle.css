@@ -1,0 +1,106 @@
+.mob-flights-wrapper-fr-spt {
+  width: 100%;
+  height: 100%;
+}
+
+.mob-flights-navbar-fr-spt {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mob-flights-navdetails-fr-spt {
+  display: flex;
+  align-items: center;
+  width: 85%;
+  height: 100%;
+}
+
+.mob-flights-navfilter-fr-spt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 100%;
+}
+
+.mob-flights-navfilter-fr-spt p {
+  padding: 5px 0px;
+  color: #484848;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.mob-flights-icon-fr-spt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 100%;
+}
+
+.mob-flights-details-fr-spt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mob-flights-title-fr-spt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 3px 0px;
+}
+
+.mob-flights-title-fr-spt p {
+  padding: 0px 5px;
+  color: #212121;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.mob-flights-subtitle-fr-spt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 3px 0px;
+}
+
+.mob-flights-subtitle-fr-spt p {
+  padding: 0px 5px;
+  color: #484848;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.mob-flights-search-fr-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.mob-flights-display-fr-spt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 82vh;
+}
+
+.mob-flights-results-fr-spt {
+  width: 100%;
+  height: 95%;
+  overflow-y: scroll;
+}

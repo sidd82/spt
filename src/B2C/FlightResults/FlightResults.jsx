@@ -10,6 +10,7 @@ import Footer from "../Symbols/Footer/Footer";
 import SearchAgainForm from "./SearchAgainForm/SearchAgainForm";
 import Filter from "./Filter/Filter";
 import Flights from "./Flights/Flights";
+import MobFlights from "./Flights/MobFlights";
 
 const FlightResults = () => {
   return (
@@ -32,6 +33,11 @@ const FlightResults = () => {
         </div>
 
         <Footer />
+      </div>
+
+      {/* Mobile Flight Results Area */}
+      <div className="mob-flights-wrapper-fr-spt">
+        <MobFlights />
       </div>
     </div>
   );
