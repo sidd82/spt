@@ -24,7 +24,7 @@ const MobileSingleFlight = ({ flight, index, history }) => {
               color="#777777"
               className="mobile-flighttakeoff-icon-spt"
             />
-            <p>------------</p>
+            <hr />
           </div>
           <div className="mob-singleflight-arrival-spt">
             <h6>
