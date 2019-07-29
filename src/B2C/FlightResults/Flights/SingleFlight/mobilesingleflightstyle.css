@@ -76,17 +76,32 @@
 
 .mob-singleflight-gap-spt {
   display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+}
+
+.mobile-flighttakeoff-icon-spt {
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  height: 100%;
+  width: 100%;
+}
+
+.mob-singleflight-gap-spt p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #777777;
 }
 
 .mob-singleflight-arrival-spt {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   height: 100%;
+  padding-left: 10px;
 }
 
 .mob-singleflight-arrival-spt h6 {

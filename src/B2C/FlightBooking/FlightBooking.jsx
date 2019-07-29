@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useStoreState } from "easy-peasy";
 import moment from "moment";
 
@@ -10,6 +10,7 @@ import TopBar from "../Symbols/TopBar/TopBar";
 import NavBar from "../Symbols/NavBar/NavBar";
 import Footer from "../Symbols/Footer/Footer";
 import PassengerBookingForm from "./PassengerBookingForm";
+import MobFlightBooking from "./MobFlightBooking";
 
 const FlightBooking = props => {
   const searchFlight = useStoreState(
@@ -23,10 +24,6 @@ const FlightBooking = props => {
   const createPassengerForm = (name, countName) => {
     const passName = name;
     const passengerForm = [];
-    const totalPassenger =
-      userSearchData.AdultCount +
-      userSearchData.ChildCount +
-      userSearchData.InfantCount;
     let passengerCount;
 
     if (countName === "adultCount") {
@@ -280,6 +277,10 @@ const FlightBooking = props => {
         </div>
         <Footer />
       </div>
+      <MobFlightBooking
+        className="mob-flightbooking-display-spt"
+        searchFlight={searchFlight}
+      />
     </div>
   );
 };

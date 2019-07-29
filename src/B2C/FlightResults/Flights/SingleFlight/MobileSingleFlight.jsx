@@ -6,7 +6,7 @@ import moment from "moment";
 import "./mobilesingleflightstyle.css";
 
 // Icons Import
-import { MdAvTimer } from "react-icons/md";
+import { MdFlightTakeoff, MdAvTimer } from "react-icons/md";
 
 const MobileSingleFlight = ({ flight, index, history }) => {
   let timeInMinute = flight.Segments[0][0].Duration;
@@ -18,7 +18,14 @@ const MobileSingleFlight = ({ flight, index, history }) => {
             <h6>{moment(flight.Segments[0][0].Origin.DepTime).format("LT")}</h6>
             <p>{flight.Segments[0][0].Origin.Airport.CityName}</p>
           </div>
-          <div className="mob-singleflight-gap-spt">2</div>
+          <div className="mob-singleflight-gap-spt">
+            <MdFlightTakeoff
+              size="1.2rem"
+              color="#777777"
+              className="mobile-flighttakeoff-icon-spt"
+            />
+            <p>------------</p>
+          </div>
           <div className="mob-singleflight-arrival-spt">
             <h6>
               {moment(flight.Segments[0][0].Destination.DepTime).format("LT")}
