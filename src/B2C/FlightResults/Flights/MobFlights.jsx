@@ -37,7 +37,7 @@ const MobFlights = ({ history }) => {
             className="mob-flights-icon-fr-spt"
             onClick={() => history.push(`/home`)}
           >
-            <MdArrowBack color="#777777" size="1.8rem" />
+            <MdArrowBack color="#777777" size="1.5rem" />
           </div>
           <div className="mob-flights-details-fr-spt">
             <div className="mob-flights-title-fr-spt">
@@ -62,7 +62,7 @@ const MobFlights = ({ history }) => {
         <div className="mob-flights-modifysearch-btn-spt">
           <MdFlight
             color="#ffffff"
-            size="1rem"
+            size="1.2rem"
             className="mob-flighticon-rotate-spt"
           />{" "}
           <p>Modify Search</p>
