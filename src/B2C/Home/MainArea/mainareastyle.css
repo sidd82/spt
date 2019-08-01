@@ -543,6 +543,7 @@
   }
 
   .select-class-spt select {
+    -webkit-appearance:none;
     width: 90%;
     height: 35px;
     margin-top: 15px;
