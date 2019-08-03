@@ -1,6 +1,13 @@
-import React, { useEffect } from "react";
-import { useStoreState } from "easy-peasy";
+import React, { useState, useEffect } from "react";
+import classnames from "classnames";
 import moment from "moment";
+import { MdClose } from "react-icons/md";
+
+// Importing useStoreState From EasyPeasy To Get State;
+import { useStoreState } from "easy-peasy";
+
+// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
+import { useStoreActions } from "easy-peasy";
 
 // CSS Import
 import "./flightbookingstyle.css";
@@ -11,15 +18,56 @@ import NavBar from "../Symbols/NavBar/NavBar";
 import Footer from "../Symbols/Footer/Footer";
 import PassengerBookingForm from "./PassengerBookingForm";
 import MobFlightBooking from "./MobFlightBooking";
+import FareRules from "./FareRules";
 
 const FlightBooking = props => {
+  useEffect(() => {
+    handleFareRules();
+
+    const script = document.createElement("script");
+
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  });
+
+  // This Action is use to get Fare Rule of a Flight from Store
+  const getFlightsFareRules = useStoreActions(
+    actions => actions.flights.getFlightsFareRules
+  );
+  // This Action is use to get Trace ID of a Flight from Store
+  const flightTraceID = useStoreState(state => state.flights.traceId);
+  // This Action is use to get Search Results of a Flight from Store
   const searchFlight = useStoreState(
     state => state.flights.flightResults[props.match.params.index]
   );
+  // This Action is use to get Travellers Number in a Flight from Store
   const userSearchData = useStoreState(state => state.ui.userSearchData);
+
+  // Converting Time from the Result of a Flight from Store
   let timeInMinute = searchFlight.Segments[0][0].Duration;
+
+  // Adding Taxes to get total amount of the flight
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
+
+  // Global Variable used for counting total number of travellers
   let count = 1;
+
+  // Local State
+  const [isFareRuleModal, setIsFareRuleModal] = useState(false);
+
+  // Method to toggle open
+  const modalOpen = () => {
+    let isModalOpen = true;
+    setIsFareRuleModal(isModalOpen);
+  };
+
+  // Method to toggle close
+  const modalClose = () => {
+    let isModalOpen = false;
+    setIsFareRuleModal(isModalOpen);
+  };
 
   const createPassengerForm = (name, countName) => {
     const passName = name;
@@ -48,15 +96,25 @@ const FlightBooking = props => {
     return passengerForm;
   };
 
-  useEffect(() => {
-    const script = document.createElement("script");
+  // Handle method for Requesting Fare Rules
+  const handleFareRules = () => {
+    const fareRulesData = {
+      EndUserIp: "",
+      TokenId: "",
+      TraceId: flightTraceID,
+      ResultIndex: searchFlight.ResultIndex
+    };
 
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
+    // Creating A Payload To Send Because We Have To Send To Thunk Action
+    const payload = {
+      flightRules: fareRulesData
+    };
 
-    document.body.appendChild(script);
-  });
+    // Calling The Actions
+    getFlightsFareRules(payload);
+  };
 
+  // Handle method for Payment Gateway
   const paymentHandler = e => {
     e.preventDefault();
 
@@ -160,7 +218,22 @@ const FlightBooking = props => {
                         ? "Refundable"
                         : "Nonrefundable"}
                     </h3>
-                    <p>Fare Rules</p>
+                    <p onClick={modalOpen}>Fare Rules</p>
+                    <div
+                      className={classnames("flightbooking-modal-wrapper-spt", {
+                        "flightbooking-modal-display-spt": isFareRuleModal
+                      })}
+                    >
+                      <div className="flightbooking-modal-container-spt">
+                        <MdClose
+                          size="2rem"
+                          color="#707070"
+                          className="fb-close-modal-spt"
+                          onClick={modalClose}
+                        />
+                        <FareRules />
+                      </div>
+                    </div>
                   </div>
 
                   {/* Stops Part */}

@@ -1,22 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import classnames from "classnames";
 import { useStoreState } from "easy-peasy";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
+import { MdClose } from "react-icons/md";
 
 // CSS Import
 import "./mobflightbookingstyle.css";
+
+// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
+import { useStoreActions } from "easy-peasy";
 
 // Icons Import
 import { MdArrowBack, MdShare, MdInfoOutline } from "react-icons/md";
 
 // Components Import
 import MobPassengerBookingForm from "./MobPassengerBookingForm";
+import FareRules from "./FareRules";
 
 const MobFlightBooking = ({ history, searchFlight }) => {
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  });
+
+  // This Action is use to get Fare Rule of a Flight from Store
+  const getFlightsFareRules = useStoreActions(
+    actions => actions.flights.getFlightsFareRules
+  );
+
+  // This Action is use to get Trace ID of a Flight from Store
+  const flightTraceID = useStoreState(state => state.flights.traceId);
+
   let timeInMinute = searchFlight.Segments[0][0].Duration;
   const userSearchData = useStoreState(state => state.ui.userSearchData);
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
   let count = 1;
+
+  // Local State
+  const [isFareRuleModal, setIsFareRuleModal] = useState(false);
+
+  // Method to toggle open
+  const modalOpen = () => {
+    let isModalOpen = true;
+    setIsFareRuleModal(isModalOpen);
+  };
+
+  // Method to toggle close
+  const modalClose = () => {
+    let isModalOpen = false;
+    setIsFareRuleModal(isModalOpen);
+  };
+
+  // Handle method for Requesting Fare Rules
+  const handleFareRules = () => {
+    const fareRulesData = {
+      EndUserIp: "",
+      TokenId: "",
+      TraceId: flightTraceID,
+      ResultIndex: searchFlight.ResultIndex
+    };
+
+    // Creating A Payload To Send Because We Have To Send To Thunk Action
+    const payload = {
+      flightRules: fareRulesData
+    };
+
+    // Calling The Actions
+    getFlightsFareRules(payload);
+  };
 
   const createPassengerForm = (name, countName) => {
     const passName = name;
@@ -45,15 +101,6 @@ const MobFlightBooking = ({ history, searchFlight }) => {
     return passengerForm;
   };
 
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-  });
-
   const paymentHandler = e => {
     e.preventDefault();
 
@@ -77,7 +124,7 @@ const MobFlightBooking = ({ history, searchFlight }) => {
     let rzp = new window.Razorpay(options);
     rzp.open();
   };
-  console.log(searchFlight);
+  // console.log(searchFlight);
 
   return (
     <div className="mob-flightbooking-wrapper-fb-spt">
@@ -142,7 +189,22 @@ const MobFlightBooking = ({ history, searchFlight }) => {
               {Math.floor(timeInMinute / 60) + "h " + (timeInMinute % 60) + "m"}
             </h6>
             <hr />
-            <p>Fare Rules</p>
+            <p onClick={modalOpen}>Fare Rules</p>
+            <div
+              className={classnames("flightbooking-modal-wrapper-spt", {
+                "flightbooking-modal-display-spt": isFareRuleModal
+              })}
+            >
+              <div className="flightbooking-modal-container-spt">
+                <MdClose
+                  size="1.5rem"
+                  color="#707070"
+                  className="fb-close-modal-spt"
+                  onClick={modalClose}
+                />
+                <FareRules />
+              </div>
+            </div>
           </div>
           <div className="mob-flightbooking-arrivaldetails-fb-spt">
             <h5>
