@@ -9,8 +9,15 @@ const flightsModel = {
   flightResults: [],
   // This is use to store fare rules of flights.
   flightFarerules: [],
+  // This is use to store fare quote of flights.
+  flightFarequote: {},
+  // This is use to store SSR of flights.
+  flightSSR: {},
+  // This is use to store isPriceChanged of flights.
+  isPriceChanged: null,
   // Trace Id For Booking
   traceId: "",
+
   // The Thunk Function To Get Flight Data
   getFlights: thunk(async (actions, payload, { getStoreActions }) => {
     const response = await axios.post(
@@ -25,7 +32,8 @@ const flightsModel = {
     payload.history.push("/flights");
     getStoreActions().ui.toggleIsLoading(false);
   }),
-  // // The Thunk Function To Get Flight Fare Rules Data
+
+  // The Thunk Function To Get Flight Fare Rules Data
   getFlightsFareRules: thunk(async (actions, payload) => {
     const response = await axios.post(
       `${URI}/api/farerules`,
@@ -34,16 +42,55 @@ const flightsModel = {
     // Firing A Action After Getting Data
     actions.addFlightsFareRules(response.data.Response.FareRules[0]);
   }),
+
+  // The Thunk Function To Get Flight Fare Quote Data
+  getFlightsFareQuote: thunk(async (actions, payload, { getStoreActions }) => {
+    const response = await axios.post(
+      `${URI}/api/farequote`,
+      payload.flightQuote
+    );
+    // Firing A Action After Getting Data
+    actions.addFlightsFareQuote(response.data.Response.Results);
+    // Fiering A Set IsPriceChanged Action
+    actions.addIsPriceChanged(response.data.Response.IsPriceChanged);
+    getStoreActions().flights.getSRR(payload);
+  }),
+
+  // The Thunk Function To Get Flight Fare Rules Data
+  getSRR: thunk(async (actions, payload, { getStoreActions }) => {
+    const response = await axios.post(`${URI}/api/ssr`, payload.flightSSR);
+    // Firing A Action After Getting Data
+    actions.addSRR(response.data.Response);
+    payload.history.push(`bookflight/${payload.index}`);
+    getStoreActions().ui.toggleIsLoading(false);
+  }),
+
   addFlights: action((state, payload) => {
     // Setting Main Flight State
     state.flightResultMain = payload;
     // Setting State For Flight Filterization
     state.flightResults = payload;
   }),
+
   addFlightsFareRules: action((state, payload) => {
     // Setting Flight Fare Rules State
     state.flightFarerules = payload;
   }),
+
+  addFlightsFareQuote: action((state, payload) => {
+    // Setting Flight Fare Quote State
+    state.flightFarequote = payload;
+  }),
+
+  addSRR: action((state, payload) => {
+    // Setting Flight SSR
+    state.flightSSR = payload;
+  }),
+
+  addIsPriceChanged: action((state, payload) => {
+    state.isPriceChanged = payload;
+  }),
+
   addTraceId: action((state, payload) => {
     state.traceId = payload;
   })

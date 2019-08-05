@@ -1,5 +1,8 @@
 import React from "react";
 
+// Importing useStoreState From EasyPeasy To Get State;
+import { useStoreState } from "easy-peasy";
+
 // CSS Import
 import "./flightresultsstyle.css";
 
@@ -11,10 +14,15 @@ import SearchAgainForm from "./SearchAgainForm/SearchAgainForm";
 import Filter from "./Filter/Filter";
 import Flights from "./Flights/Flights";
 import MobFlights from "./Flights/MobFlights";
+import FlightsLoading from "../utilsComponents/FlightsLoading";
 
 const FlightResults = () => {
+  const isLoading = useStoreState(state => state.ui.isLoading);
+
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      {isLoading && <FlightsLoading />}
+
       <div className="main-container-fr-spt">
         <TopBar />
 

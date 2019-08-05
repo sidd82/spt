@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
-import { useStoreState } from "easy-peasy";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
 import { MdClose } from "react-icons/md";
+import { Accordion, AccordionItem } from "react-sanfona";
 
 // CSS Import
 import "./mobflightbookingstyle.css";
 
-// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
-import { useStoreActions } from "easy-peasy";
+// Importing useStoreState From EasyPeasy To Get State;
+import { useStoreState } from "easy-peasy";
 
 // Icons Import
 import { MdArrowBack, MdShare, MdInfoOutline } from "react-icons/md";
@@ -28,13 +28,14 @@ const MobFlightBooking = ({ history, searchFlight }) => {
     document.body.appendChild(script);
   });
 
-  // This Action is use to get Fare Rule of a Flight from Store
-  const getFlightsFareRules = useStoreActions(
-    actions => actions.flights.getFlightsFareRules
+  // This Action is use to get SSR Meal Results of a Flight from Store
+  const ssrMealResults = useStoreState(
+    state => state.flights.flightSSR.MealDynamic[0]
   );
-
-  // This Action is use to get Trace ID of a Flight from Store
-  const flightTraceID = useStoreState(state => state.flights.traceId);
+  // This Action is use to get SSR Baggage Results of a Flight from Store
+  const ssrBaggageResults = useStoreState(
+    state => state.flights.flightSSR.Baggage[0]
+  );
 
   let timeInMinute = searchFlight.Segments[0][0].Duration;
   const userSearchData = useStoreState(state => state.ui.userSearchData);
@@ -54,24 +55,6 @@ const MobFlightBooking = ({ history, searchFlight }) => {
   const modalClose = () => {
     let isModalOpen = false;
     setIsFareRuleModal(isModalOpen);
-  };
-
-  // Handle method for Requesting Fare Rules
-  const handleFareRules = () => {
-    const fareRulesData = {
-      EndUserIp: "",
-      TokenId: "",
-      TraceId: flightTraceID,
-      ResultIndex: searchFlight.ResultIndex
-    };
-
-    // Creating A Payload To Send Because We Have To Send To Thunk Action
-    const payload = {
-      flightRules: fareRulesData
-    };
-
-    // Calling The Actions
-    getFlightsFareRules(payload);
   };
 
   const createPassengerForm = (name, countName) => {
@@ -94,6 +77,7 @@ const MobFlightBooking = ({ history, searchFlight }) => {
           adult={passengerCount}
           passName={passName}
           totalPassenger={count}
+          flight={searchFlight}
           key={count}
         />
       );
@@ -281,6 +265,41 @@ const MobFlightBooking = ({ history, searchFlight }) => {
                 </div>
               </div>
             </div>
+            <Accordion className="mob-flightbooking-meal-baggage-wrapper-fb-spt">
+              <AccordionItem
+                title="+ Meal / Excess Baggage For Passenger 1"
+                titleClassName="mob-flightbooking-meal-baggage-title-fb-spt"
+              >
+                <div className="mob-flightbooking-meal-baggage-body-fb-spt">
+                  <div className="mob-flightbooking-meal-select-fb-spt">
+                    <p>
+                      {searchFlight.Segments[0][0].Origin.Airport.CityCode} -{" "}
+                      {searchFlight.Segments[0][0].Destination.Airport.CityCode}
+                    </p>
+                    <select name="classtype">
+                      {ssrMealResults.map(meal => (
+                        <option value={meal.Code}>
+                          Qty {meal.Quantity} | {meal.Code} | {meal.Price}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="mob-flightbooking-baggage-select-fb-spt">
+                    <p>
+                      {searchFlight.Segments[0][0].Origin.Airport.CityCode} -{" "}
+                      {searchFlight.Segments[0][0].Destination.Airport.CityCode}
+                    </p>
+                    <select name="classtype">
+                      {ssrBaggageResults.map(baggage => (
+                        <option value={baggage.Weight}>
+                          {baggage.Weight} Kg | ₹ {baggage.Price}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </AccordionItem>
+            </Accordion>
           </div>
         </form>
 

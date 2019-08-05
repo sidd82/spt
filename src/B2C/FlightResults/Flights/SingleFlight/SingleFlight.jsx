@@ -2,6 +2,12 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
 
+// Importing useStoreState From EasyPeasy To Get State;
+import { useStoreState } from "easy-peasy";
+
+// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
+import { useStoreActions } from "easy-peasy";
+
 // CSS Import
 import "./singleflightstyle.css";
 
@@ -16,7 +22,71 @@ import {
 } from "react-icons/md";
 
 const SingleFlight = ({ flight, index, history }) => {
+  // This Action is use to get Fare Rule of a Flight from Store
+  const getFlightsFareRules = useStoreActions(
+    actions => actions.flights.getFlightsFareRules
+  );
+
+  // This Action is use to get Fare Quote of a Flight from Store
+  const getFlightsFareQuote = useStoreActions(
+    actions => actions.flights.getFlightsFareQuote
+  );
+
+  const toggleIsLoading = useStoreActions(
+    actions => actions.ui.toggleIsLoading
+  );
+
+  // This Action is use to get Trace ID of a Flight from Store
+  const flightTraceID = useStoreState(state => state.flights.traceId);
+
   let timeInMinute = flight.Segments[0][0].Duration;
+
+  // Handle method for Requesting Fare Rules
+  const handleFareRules = () => {
+    toggleIsLoading(true);
+    const fareRulesData = {
+      EndUserIp: "",
+      TokenId: "",
+      TraceId: flightTraceID,
+      ResultIndex: flight.ResultIndex
+    };
+
+    // Creating A Payload To Send Because We Have To Send To Thunk Action
+    const payload = {
+      flightRules: fareRulesData
+    };
+
+    // Calling The Actions
+    getFlightsFareRules(payload);
+  };
+
+  // Handle method for Requesting Fare Quote
+  const handleFareQuote = () => {
+    const fareQuoteData = {
+      EndUserIp: "",
+      TokenId: "",
+      TraceId: flightTraceID,
+      ResultIndex: flight.ResultIndex
+    };
+
+    const ssrData = {
+      EndUserIp: "",
+      TokenId: "",
+      TraceId: flightTraceID,
+      ResultIndex: flight.ResultIndex
+    };
+
+    // Creating A Payload To Send Because We Have To Send To Thunk Action
+    const payload = {
+      flightQuote: fareQuoteData,
+      flightSSR: ssrData,
+      history: history,
+      index: index
+    };
+    // Calling The Actions
+    getFlightsFareQuote(payload);
+  };
+
   // console.log(flight.Fare.PublishedFare);
   return (
     <div className="single-flight-wrapper-spt">
@@ -136,13 +206,6 @@ const SingleFlight = ({ flight, index, history }) => {
           </div>
         </div>
         <br />
-        {/*
-        <div className="duration-area-sf-spt">
-          <div className="text-duration-sf-spt">
-            <p>1</p>
-          </div>
-        </div>
-        */}
       </div>
 
       {/* Price Part */}
@@ -153,7 +216,10 @@ const SingleFlight = ({ flight, index, history }) => {
         <div className="price-area-sf-spt">
           <div
             className="book-button-sf-spt"
-            onClick={() => history.push(`/bookflight/${index}`)}
+            onClick={() => {
+              handleFareRules();
+              handleFareQuote();
+            }}
           >
             <p>Book Now</p>
           </div>

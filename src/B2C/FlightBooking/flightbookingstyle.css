@@ -424,11 +424,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
-  height: 300px;
+  height: 100%;
+  padding: 10px;
   background-color: #ffffff;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+}
+
+.flightbooking-passenger-formcontainer-fb-spt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 .flightbooking-pass-formwrap-fb-spt {
@@ -526,6 +537,21 @@
 }
 
 .flightbooking-pass-dob-fb-spt p {
+  color: #707070;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 2px 10px;
+}
+
+.flightbooking-singlepass-dob-fb-spt {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.flightbooking-singlepass-dob-fb-spt p {
   color: #707070;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
@@ -669,12 +695,103 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 10px 0px;
+  padding: 10px;
   background-color: #ffffff;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+}
+
+.flightbooking-meal-baggage-wrapper-fb-spt {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 100%;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.flightbooking-meal-baggage-title-fb-spt {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  background-color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.flightbooking-meal-baggage-body-fb-spt {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 30px 20px;
+  background-color: #ffffff;
+}
+
+.flightbooking-meal-select-fb-spt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0px 30px;
+}
+
+.flightbooking-meal-select-fb-spt p {
+  color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.flightbooking-meal-select-fb-spt select {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.flightbooking-baggage-select-fb-spt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0px 30px;
+}
+
+.flightbooking-baggage-select-fb-spt p {
+  color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.flightbooking-baggage-select-fb-spt select {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
 }
 
 @media only screen and (max-width: 1023px) {

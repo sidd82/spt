@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import moment from "moment";
 import { MdClose } from "react-icons/md";
+import { Accordion, AccordionItem } from "react-sanfona";
 
 // Importing useStoreState From EasyPeasy To Get State;
 import { useStoreState } from "easy-peasy";
-
-// Importing useStoreAction From EasyPeasy To Dispatch Action & Accessing State
-import { useStoreActions } from "easy-peasy";
 
 // CSS Import
 import "./flightbookingstyle.css";
@@ -22,8 +20,6 @@ import FareRules from "./FareRules";
 
 const FlightBooking = props => {
   useEffect(() => {
-    handleFareRules();
-
     const script = document.createElement("script");
 
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -32,15 +28,17 @@ const FlightBooking = props => {
     document.body.appendChild(script);
   });
 
-  // This Action is use to get Fare Rule of a Flight from Store
-  const getFlightsFareRules = useStoreActions(
-    actions => actions.flights.getFlightsFareRules
-  );
-  // This Action is use to get Trace ID of a Flight from Store
-  const flightTraceID = useStoreState(state => state.flights.traceId);
   // This Action is use to get Search Results of a Flight from Store
   const searchFlight = useStoreState(
     state => state.flights.flightResults[props.match.params.index]
+  );
+  // This Action is use to get SSR Meal Results of a Flight from Store
+  const ssrMealResults = useStoreState(
+    state => state.flights.flightSSR.MealDynamic[0]
+  );
+  // This Action is use to get SSR Baggage Results of a Flight from Store
+  const ssrBaggageResults = useStoreState(
+    state => state.flights.flightSSR.Baggage[0]
   );
   // This Action is use to get Travellers Number in a Flight from Store
   const userSearchData = useStoreState(state => state.ui.userSearchData);
@@ -89,29 +87,12 @@ const FlightBooking = props => {
           adult={passengerCount}
           passName={passName}
           totalPassenger={count}
+          flight={searchFlight}
           key={count}
         />
       );
     }
     return passengerForm;
-  };
-
-  // Handle method for Requesting Fare Rules
-  const handleFareRules = () => {
-    const fareRulesData = {
-      EndUserIp: "",
-      TokenId: "",
-      TraceId: flightTraceID,
-      ResultIndex: searchFlight.ResultIndex
-    };
-
-    // Creating A Payload To Send Because We Have To Send To Thunk Action
-    const payload = {
-      flightRules: fareRulesData
-    };
-
-    // Calling The Actions
-    getFlightsFareRules(payload);
   };
 
   // Handle method for Payment Gateway
@@ -138,6 +119,7 @@ const FlightBooking = props => {
     let rzp = new window.Razorpay(options);
     rzp.open();
   };
+
   // Keep In Mind Last Line
   // console.log(search[props.match.params.index]);
 
@@ -285,58 +267,103 @@ const FlightBooking = props => {
             </p>
             <form>
               <div className="flightbooking-passenger-mainform-fb-spt">
-                <div className="flightbooking-pass-formwrap-fb-spt">
-                  <div className="flightbooking-pass-name-fb-spt">
-                    <p>Full Name</p>
-                    <input type="text" />
-                  </div>
+                <div className="flightbooking-passenger-formcontainer-fb-spt">
+                  <div className="flightbooking-pass-formwrap-fb-spt">
+                    <div className="flightbooking-pass-name-fb-spt">
+                      <p>Full Name</p>
+                      <input type="text" />
+                    </div>
 
-                  <div className="flightbooking-pass-mobile-fb-spt">
-                    <p>Mobile</p>
-                    <input type="text" />
-                  </div>
+                    <div className="flightbooking-pass-mobile-fb-spt">
+                      <p>Mobile</p>
+                      <input type="text" />
+                    </div>
 
-                  <div className="flightbooking-pass-email-fb-spt">
-                    <p>Email</p>
-                    <input type="email" />
-                  </div>
+                    <div className="flightbooking-pass-email-fb-spt">
+                      <p>Email</p>
+                      <input type="email" />
+                    </div>
 
-                  <div className="flightbooking-pass-dob-fb-spt">
-                    <p>Date of Birth</p>
-                    <div className="dob-details-fb-spt">
-                      <input type="text" placeholder="Date" />
-                      <input type="text" placeholder="Month" />
-                      <input type="text" placeholder="Year" />
+                    <div className="flightbooking-pass-dob-fb-spt">
+                      <p>Date of Birth</p>
+                      <div className="dob-details-fb-spt">
+                        <input type="text" placeholder="Date" />
+                        <input type="text" placeholder="Month" />
+                        <input type="text" placeholder="Year" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flightbooking-pass-formwrap-fb-spt">
+                    <div className="flightbooking-pass-address-fb-spt">
+                      <p>Address (Line 1)</p>
+                      <input type="text" />
+                    </div>
+
+                    <div className="flightbooking-pass-address-fb-spt">
+                      <p>Address (Line 2)</p>
+                      <input type="text" />
+                    </div>
+
+                    <div className="flightbooking-pass-city-fb-spt">
+                      <p>City</p>
+                      <input type="text" />
+                    </div>
+
+                    <div className="flightbooking-pass-postal-fb-spt">
+                      <div className="country-details-fb-spt">
+                        <p>Country</p>
+                        <input type="text" />
+                      </div>
+                      <div className="postal-details-fb-spt">
+                        <p>Postal Code</p>
+                        <input type="text" />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="flightbooking-pass-formwrap-fb-spt">
-                  <div className="flightbooking-pass-address-fb-spt">
-                    <p>Address (Line 1)</p>
-                    <input type="text" />
-                  </div>
-
-                  <div className="flightbooking-pass-address-fb-spt">
-                    <p>Address (Line 2)</p>
-                    <input type="text" />
-                  </div>
-
-                  <div className="flightbooking-pass-city-fb-spt">
-                    <p>City</p>
-                    <input type="text" />
-                  </div>
-
-                  <div className="flightbooking-pass-postal-fb-spt">
-                    <div className="country-details-fb-spt">
-                      <p>Country</p>
-                      <input type="text" />
+                <Accordion className="flightbooking-meal-baggage-wrapper-fb-spt">
+                  <AccordionItem
+                    title="+ Meal / Excess Baggage For Passenger 1"
+                    titleClassName="flightbooking-meal-baggage-title-fb-spt"
+                  >
+                    <div className="flightbooking-meal-baggage-body-fb-spt">
+                      <div className="flightbooking-meal-select-fb-spt">
+                        <p>
+                          {searchFlight.Segments[0][0].Origin.Airport.CityCode}{" "}
+                          -{" "}
+                          {
+                            searchFlight.Segments[0][0].Destination.Airport
+                              .CityCode
+                          }
+                        </p>
+                        <select name="classtype">
+                          {ssrMealResults.map(meal => (
+                            <option value={meal.Code}>
+                              Qty {meal.Quantity} | {meal.Code} | {meal.Price}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="flightbooking-baggage-select-fb-spt">
+                        <p>
+                          {searchFlight.Segments[0][0].Origin.Airport.CityCode}{" "}
+                          -{" "}
+                          {
+                            searchFlight.Segments[0][0].Destination.Airport
+                              .CityCode
+                          }
+                        </p>
+                        <select name="classtype">
+                          {ssrBaggageResults.map(baggage => (
+                            <option value={baggage.Weight}>
+                              {baggage.Weight} Kg | ₹ {baggage.Price}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
-                    <div className="postal-details-fb-spt">
-                      <p>Postal Code</p>
-                      <input type="text" />
-                    </div>
-                  </div>
-                </div>
+                  </AccordionItem>
+                </Accordion>
               </div>
 
               {/* Passengers Part */}
