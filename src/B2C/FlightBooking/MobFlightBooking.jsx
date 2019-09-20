@@ -29,15 +29,15 @@ const MobFlightBooking = ({ history, searchFlight }) => {
   });
 
   // This Action is use to get SSR Meal Results of a Flight from Store
-  const ssrMealResults = useStoreState(
-    state => state.flights.flightSSR.MealDynamic[0]
-  );
+  // const ssrMealResults = useStoreState(
+  //   state => state.flights.flightSSR.MealDynamic[0]
+  // );
   // This Action is use to get SSR Baggage Results of a Flight from Store
-  const ssrBaggageResults = useStoreState(
-    state => state.flights.flightSSR.Baggage[0]
-  );
+  // const ssrBaggageResults = useStoreState(
+  //   state => state.flights.flightSSR.Baggage[0]
+  // );
 
-  let timeInMinute = searchFlight.Segments[0][0].Duration;
+  let timeInMinute = searchFlight.Segments[0].Duration;
   const userSearchData = useStoreState(state => state.ui.userSearchData);
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
   let count = 1;
@@ -130,18 +130,18 @@ const MobFlightBooking = ({ history, searchFlight }) => {
         <div className="mob-flightbooking-mindepart-fb-spt">
           <h6>DEPART</h6>
           <p>
-            {moment(searchFlight.Segments[0][0].Origin.DepTime).format(
+            {moment(searchFlight.Segments[0].Origin.DepTime).format(
               "ddd, D MMM"
             )}
           </p>
         </div>
         <div className="mob-flightbooking-mindestination-fb-spt">
           <h6>
-            {searchFlight.Segments[0][0].Origin.Airport.CityCode} -{" "}
-            {searchFlight.Segments[0][0].Destination.Airport.CityCode}
+            {searchFlight.Segments[0].Origin.Airport.CityCode} -{" "}
+            {searchFlight.Segments[0].Destination.Airport.CityCode}
           </h6>
           <p>
-            {searchFlight.Segments[0][0].StopOver ? "Stop Over" : "Nonstop"} |{" "}
+            {searchFlight.Segments[0].StopOver ? "Stop Over" : "Nonstop"} |{" "}
             {Math.floor(timeInMinute / 60) + "h " + (timeInMinute % 60) + "m"}
           </p>
         </div>
@@ -149,24 +149,22 @@ const MobFlightBooking = ({ history, searchFlight }) => {
       <div className="mob-flightbooking-maindetails-fb-spt">
         <div className="mob-flightbooking-flightdetails-fb-spt">
           <p>
-            {searchFlight.Segments[0][0].Airline.AirlineName}
+            {searchFlight.Segments[0].Airline.AirlineName}
             {"  "}
-            <span>{`${searchFlight.Segments[0][0].Airline.AirlineCode}-${
-              searchFlight.Segments[0][0].Airline.FlightNumber
-            }`}</span>
+            <span>{`${searchFlight.Segments[0].Airline.AirlineCode}-${searchFlight.Segments[0].Airline.FlightNumber}`}</span>
           </p>
         </div>
         <div className="mob-flightbooking-traveldetails-fb-spt">
           <div className="mob-flightbooking-departdetails-fb-spt">
             <h5>
-              {moment(searchFlight.Segments[0][0].Origin.DepTime).format("LT")}
+              {moment(searchFlight.Segments[0].Origin.DepTime).format("LT")}
             </h5>
             <h6>
-              {moment(searchFlight.Segments[0][0].Origin.DepTime).format(
+              {moment(searchFlight.Segments[0].Origin.DepTime).format(
                 "ddd, D MMM YY"
               )}
             </h6>
-            <p>{searchFlight.Segments[0][0].Origin.Airport.CityName}</p>
+            <p>{searchFlight.Segments[0].Origin.Airport.CityName}</p>
           </div>
           <div className="mob-flightbooking-gapdetails-fb-spt">
             <h6>
@@ -192,16 +190,16 @@ const MobFlightBooking = ({ history, searchFlight }) => {
           </div>
           <div className="mob-flightbooking-arrivaldetails-fb-spt">
             <h5>
-              {moment(searchFlight.Segments[0][0].Destination.DepTime).format(
+              {moment(searchFlight.Segments[0].Destination.DepTime).format(
                 "LT"
               )}
             </h5>
             <h6>
-              {moment(searchFlight.Segments[0][0].Destination.DepTime).format(
+              {moment(searchFlight.Segments[0].Destination.DepTime).format(
                 "ddd, D MMM YY"
               )}
             </h6>
-            <p>{searchFlight.Segments[0][0].Destination.Airport.CityName}</p>
+            <p>{searchFlight.Segments[0].Destination.Airport.CityName}</p>
           </div>
         </div>
       </div>
@@ -265,7 +263,7 @@ const MobFlightBooking = ({ history, searchFlight }) => {
                 </div>
               </div>
             </div>
-            <Accordion className="mob-flightbooking-meal-baggage-wrapper-fb-spt">
+            {/* <Accordion className="mob-flightbooking-meal-baggage-wrapper-fb-spt">
               <AccordionItem
                 title="+ Meal / Excess Baggage For Passenger 1"
                 titleClassName="mob-flightbooking-meal-baggage-title-fb-spt"
@@ -299,7 +297,7 @@ const MobFlightBooking = ({ history, searchFlight }) => {
                   </div>
                 </div>
               </AccordionItem>
-            </Accordion>
+            </Accordion> */}
           </div>
         </form>
 

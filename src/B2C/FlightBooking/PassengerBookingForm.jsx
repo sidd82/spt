@@ -9,19 +9,17 @@ import "./flightbookingstyle.css";
 
 const PassengerBookingForm = props => {
   // This Action is use to get SSR Meal Results of a Flight from Store
-  const ssrMealResults = useStoreState(
-    state => state.flights.flightSSR.MealDynamic[0]
-  );
+  // const ssrMealResults = useStoreState(
+  //   state => state.flights.flightSSR.MealDynamic[0]
+  // );
   // This Action is use to get SSR Baggage Results of a Flight from Store
-  const ssrBaggageResults = useStoreState(
-    state => state.flights.flightSSR.Baggage[0]
-  );
+  // const ssrBaggageResults = useStoreState(
+  //   state => state.flights.flightSSR.Baggage[0]
+  // );
 
   return (
     <div className="passenger-booking-form-wrapper-spt">
-      <p className="flightbooking-passenger-head-fb-spt">{`Passenger ${
-        props.totalPassenger
-      } (${props.passName})`}</p>
+      <p className="flightbooking-passenger-head-fb-spt">{`Passenger ${props.totalPassenger} (${props.passName})`}</p>
       <form>
         <div className="passenger-passengerbooking-mainform-fb-spt">
           <div className="flightbooking-passenger-formcontainer-fb-spt">
@@ -42,7 +40,7 @@ const PassengerBookingForm = props => {
               </div>
             </div>
           </div>
-          <Accordion className="flightbooking-meal-baggage-wrapper-fb-spt">
+          {/* <Accordion className="flightbooking-meal-baggage-wrapper-fb-spt">
             <AccordionItem
               title={`+ Meal / Excess Baggage For Passenger ${
                 props.totalPassenger
@@ -79,7 +77,7 @@ const PassengerBookingForm = props => {
                 </div>
               </div>
             </AccordionItem>
-          </Accordion>
+          </Accordion> */}
         </div>
       </form>
     </div>

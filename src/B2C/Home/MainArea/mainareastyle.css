@@ -179,10 +179,15 @@
   padding: 0 35px;
 }
 
+.select-class-spt {
+  display: flex;
+  width: 100%;
+}
+
 .select-class-spt select {
-  width: 260px;
+  display: flex;
+  width: 100%;
   padding: 10px 10px;
-  display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
@@ -192,13 +197,14 @@
 }
 
 .departure-date-spt {
-  margin-left: 25px;
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+  margin-left: 20px;
 }
 
 [type="date"] {
-  background: #fff
-    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
-    97% 50% no-repeat;
+  background: #fff url("../../../static/icon-cal.png") 95% 50% no-repeat;
 }
 [type="date"]::-webkit-inner-spin-button {
   display: none;
@@ -211,13 +217,50 @@
   content: attr(data-placeholder);
   display: flex;
   align-items: center;
-  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.departure-date-spt input[type="date"]::-webkit-datetime-edit {
+  font-size: 0px;
 }
 
 .departure-date-spt input[type="date"] {
-  width: 250px;
+  display: flex;
+  width: 100%;
   padding: 10px 10px;
-  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.arrival-date-spt {
+  display: flex;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.arrival-date-spt input[type="date"]::before {
+  content: attr(data-placeholder);
+  display: flex;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.arrival-date-spt input[type="date"]::-webkit-datetime-edit {
+  font-size: 0px;
+}
+
+.arrival-date-spt input[type="date"] {
+  width: 100%;
+  padding: 10px 10px;
+  display: flex;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
@@ -370,8 +413,16 @@
     display: flex;
     justify-content: center;
     margin-top: -10px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     height: 530px;
+  }
+
+  .mob-mainarea-roundtrip-wrapper-spt {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    padding-bottom: 20px;
+    height: 600px;
   }
 
   .mob-mainarea-spt {
@@ -520,6 +571,10 @@
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
   }
 
+  .arrival-date-spt input[type="date"]::-webkit-datetime-edit {
+    font-size: 0px;
+  }
+
   .arrival-wrapper-spt input[type="text"] {
     position: relative;
     left: 0px;
@@ -565,15 +620,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     margin-top: 15px;
-    margin-left: 0px;
+    width: 90%;
   }
 
   [type="date"] {
-    background: #fff
-      url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
-      97% 50% no-repeat;
+    background: #fff url("../../../static/icon-cal.png") 95% 50% no-repeat;
   }
   [type="date"]::-webkit-inner-spin-button {
     display: none;
@@ -584,19 +636,57 @@
 
   .departure-date-spt input[type="date"]::before {
     content: attr(data-placeholder);
-    width: 100%;
-  }
-
-  .departure-date-spt input[type="date"] {
-    width: 90%;
-    padding: 8px;
-    display: inline-block;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
+    color: #212121;
+  }
+
+  .departure-date-spt input[type="date"] {
+    display: flex;
+    width: 100%;
+    padding: 10px 10px;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    font-size: 0px;
+  }
+
+  .departure-date-spt input[type="date"]::-webkit-datetime-edit {
+    font-size: 0px;
+  }
+
+  .arrival-date-spt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 90%;
+  }
+
+  .arrival-date-spt input[type="date"]::before {
+    content: attr(data-placeholder);
+    display: inline-block;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #212121;
+  }
+
+  .arrival-date-spt input[type="date"] {
+    display: flex;
+    width: 100%;
+    padding: 10px 10px;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    font-size: 0px;
+  }
+
+  .arrival-date-spt input[type="date"]::-webkit-datetime-edit {
+    font-size: 0px;
   }
 
   .mob-person-wrapper-spt {
@@ -694,6 +784,7 @@
     height: 15%;
     width: 100%;
     padding: 0 15px;
+    margin-bottom: 20px;
   }
 
   .submit-btn-spt {

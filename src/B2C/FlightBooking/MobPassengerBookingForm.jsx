@@ -9,20 +9,18 @@ import "./mobflightbookingstyle.css";
 
 const MobPassengerBookingForm = props => {
   // This Action is use to get SSR Meal Results of a Flight from Store
-  const ssrMealResults = useStoreState(
-    state => state.flights.flightSSR.MealDynamic[0]
-  );
+  // const ssrMealResults = useStoreState(
+  //   state => state.flights.flightSSR.MealDynamic[0]
+  // );
   // This Action is use to get SSR Baggage Results of a Flight from Store
-  const ssrBaggageResults = useStoreState(
-    state => state.flights.flightSSR.Baggage[0]
-  );
+  // const ssrBaggageResults = useStoreState(
+  //   state => state.flights.flightSSR.Baggage[0]
+  // );
 
   return (
     <div className="mob-passenger-booking-form-wrapper-spt">
       <div className="mob-passenger-booking-form-container-spt">
-        <p className="mob-flightbooking-passenger-head-fb-spt">{`Passenger ${
-          props.totalPassenger
-        } (${props.passName})`}</p>
+        <p className="mob-flightbooking-passenger-head-fb-spt">{`Passenger ${props.totalPassenger} (${props.passName})`}</p>
         <form>
           <div className="mob-passenger-passengerbooking-mainform-fb-spt">
             <div className="mob-flightbooking-pass-formwrap-fb-spt">
@@ -41,7 +39,7 @@ const MobPassengerBookingForm = props => {
                 </div>
               </div>
             </div>
-            <Accordion className="mob-flightbooking-meal-baggage-wrapper-fb-spt">
+            {/* <Accordion className="mob-flightbooking-meal-baggage-wrapper-fb-spt">
               <AccordionItem
                 title={`+ Meal / Excess Baggage For Passenger ${
                   props.totalPassenger
@@ -78,7 +76,7 @@ const MobPassengerBookingForm = props => {
                   </div>
                 </div>
               </AccordionItem>
-            </Accordion>
+            </Accordion> */}
           </div>
         </form>
       </div>

@@ -17,30 +17,43 @@ const flightsModel = {
   isPriceChanged: null,
   // Trace Id For Booking
   traceId: "",
+  // Token Id For Booking
+  tokenId: "",
 
   // The Thunk Function To Get Flight Data
   getFlights: thunk(async (actions, payload, { getStoreActions }) => {
+    console.log(payload.flightRequest);
     const response = await axios.post(
-      `${URI}/api/search`,
+      `${URI}/AirSearch`,
       payload.flightRequest
     );
-    // Firing A Action After Getting Data
-    actions.addFlights(response.data.Response.Results[0]);
-    // Fiering A Set TraceId Action
-    actions.addTraceId(response.data.Response.TraceId);
-    // Pushing To Flights Screen
-    payload.history.push("/flights");
-    getStoreActions().ui.toggleIsLoading(false);
+    try {
+      // Firing A Action After Getting Data
+      actions.addFlights(response.data.Response[0].Results);
+      // Fiering A Set TraceId Action
+      actions.addTraceId(response.data.Response[0].TraceId);
+      // Fiering A Set TokenId Action
+      actions.addTokenId(response.data.Response[0].TokenId);
+      // Pushing To Flights Screen
+      payload.history.push("/flights");
+      getStoreActions().ui.toggleIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   }),
 
   // The Thunk Function To Get Flight Fare Rules Data
-  getFlightsFareRules: thunk(async (actions, payload) => {
+  getFlightsFareRules: thunk(async (actions, payload, { getStoreActions }) => {
+    console.log(payload.flightRules);
     const response = await axios.post(
-      `${URI}/api/farerules`,
+      `${URI}/AirFareRules`,
       payload.flightRules
     );
+    console.log(response.data.Response[0]);
     // Firing A Action After Getting Data
-    actions.addFlightsFareRules(response.data.Response.FareRules[0]);
+    actions.addFlightsFareRules(response.data.Response[0].FareRules[0]);
+    payload.history.push(`bookflight/${payload.index}`);
+    getStoreActions().ui.toggleIsLoading(false);
   }),
 
   // The Thunk Function To Get Flight Fare Quote Data
@@ -93,6 +106,10 @@ const flightsModel = {
 
   addTraceId: action((state, payload) => {
     state.traceId = payload;
+  }),
+
+  addTokenId: action((state, payload) => {
+    state.tokenId = payload;
   })
 };
 

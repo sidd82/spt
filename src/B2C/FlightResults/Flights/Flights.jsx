@@ -35,10 +35,11 @@ const Flights = () => {
         </div>
       </div>
       <div className="flight-inner-flight-spt">
-        {flightResults &&
-          flightResults.map((flight, index) => (
-            <SingleFlight key={index} flight={flight} index={index} />
-          ))}
+        {flightResults[1]
+          ? console.log("ROund Trip")
+          : flightResults[0].Result.map((flight, index) => (
+              <SingleFlight key={index} flight={flight} index={index} />
+            ))}
       </div>
     </div>
   );

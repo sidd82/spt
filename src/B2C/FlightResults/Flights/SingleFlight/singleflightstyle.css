@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 15%;
+  width: 20%;
   height: 100%;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
@@ -97,7 +97,7 @@
 }
 
 .text-departure-sf-spt p {
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }
@@ -139,7 +139,7 @@
 }
 
 .text-arrival-sf-spt p {
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }

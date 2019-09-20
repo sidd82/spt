@@ -603,6 +603,7 @@
     height: 80px;
     bottom: 0;
     padding: 10px 5px;
+    z-index: 999;
   }
 
   .mob-flightbooking-pricedetails-spt {

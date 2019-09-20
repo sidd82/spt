@@ -20,11 +20,12 @@ const MobFlights = ({ history }) => {
   const traveller = useStoreState(state => state.ui.userSearchData);
 
   // Assigning Flights Details To Variables
-  const departTitle = flightResults[0].Segments[0][0].Origin.Airport.CityName;
+  const departTitle =
+    flightResults[0].Result[0].Segments[0].Origin.Airport.CityName;
   const arrivalTitle =
-    flightResults[0].Segments[0][0].Destination.Airport.CityName;
+    flightResults[0].Result[0].Segments[0].Destination.Airport.CityName;
   const bookingDate = moment(
-    flightResults[0].Segments[0][0].Destination.ArrTime
+    flightResults[0].Result[0].Segments[0].Destination.ArrTime
   ).format("ddd, D MMM");
   const travellerCount =
     traveller.AdultCount + traveller.ChildCount + traveller.InfantCount;
@@ -70,10 +71,11 @@ const MobFlights = ({ history }) => {
       </div>
       <div className="mob-flights-display-fr-spt">
         <div className="mob-flights-results-fr-spt">
-          {flightResults &&
-            flightResults.map((flight, index) => (
-              <MobileSingleFlight key={index} flight={flight} index={index} />
-            ))}
+          {flightResults[1]
+            ? console.log("ROund Trip")
+            : flightResults[0].Result.map((flight, index) => (
+                <MobileSingleFlight key={index} flight={flight} index={index} />
+              ))}
         </div>
       </div>
     </div>

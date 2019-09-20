@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import classnames from "classnames";
+import moment from "moment";
 import { withRouter } from "react-router-dom";
 import {
   MdCompareArrows,
@@ -35,6 +37,15 @@ const MainArea = props => {
   const [destination, setDestination] = useState("");
   const [cabinClass, setCabinClass] = useState(1);
   const [departureTime, setDepartureTime] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
+  const [departureTimePlaceholder, setDepartureTimePlaceholder] = useState(
+    "Departure"
+  );
+  const [arrivalTimePlaceholder, setArrivalTimePlaceholder] = useState(
+    "Arrival"
+  );
+
+  const [isOneWay, setIsOneWay] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -45,23 +56,37 @@ const MainArea = props => {
       InfantCount: infant
     };
     const searchData = {
-      EndUserIp: "",
-      TokenId: "",
       AdultCount: adult,
       ChildCount: child,
       InfantCount: infant,
       DirectFlight: directFlight,
-      JourneyType: journeyType,
+      AirTripType: journeyType,
       PreferredAirlines: null,
-      Segments: [
-        {
-          Origin: origin,
-          Destination: destination,
-          FlightCabinClass: cabinClass,
-          PreferredDepartureTime: departureTime,
-          PreferredArrivalTime: departureTime
-        }
-      ]
+      CabinType: cabinClass,
+      Segments:
+        journeyType.toString() === "1"
+          ? [
+              {
+                Origin: origin,
+                Destination: destination,
+                DepartureDateTime: departureTime
+                // PreferredArrivalTime: departureTime
+              }
+            ]
+          : [
+              {
+                Origin: origin,
+                Destination: destination,
+                DepartureDateTime: departureTime
+                // PreferredArrivalTime: departureTime
+              },
+              {
+                Origin: destination,
+                Destination: origin,
+                DepartureDateTime: arrivalTime
+                // PreferredArrivalTime: departureTime
+              }
+            ]
     };
 
     // Creating A Payload To Send Because We Have To Send Two Things To Thunk Action
@@ -78,8 +103,10 @@ const MainArea = props => {
 
   const handleJourneyType = e => {
     if (e.target.value === "OneWay") {
+      setIsOneWay(false);
       setjourneyType(1);
     } else if (e.target.value === "Return") {
+      setIsOneWay(true);
       setjourneyType(2);
     } else if (e.target.value === "MultiStop") {
       setjourneyType(3);
@@ -92,9 +119,9 @@ const MainArea = props => {
 
   const handleCabinClass = e => {
     if (e.target.value === "all") {
-      setCabinClass(1);
+      setCabinClass(0);
     } else if (e.target.value === "economy") {
-      setCabinClass(2);
+      setCabinClass(1);
     } else if (e.target.value === "premiumeconomy") {
       setCabinClass(3);
     } else if (e.target.value === "business") {
@@ -107,7 +134,13 @@ const MainArea = props => {
   };
 
   const handleDeparture = e => {
+    setDepartureTimePlaceholder(moment(e.target.value).format("ll"));
     setDepartureTime(e.target.value + "T00: 00: 00");
+  };
+
+  const handleArrival = e => {
+    setArrivalTimePlaceholder(moment(e.target.value).format("ll"));
+    setArrivalTime(e.target.value + "T00: 00: 00");
   };
 
   return (
@@ -207,9 +240,18 @@ const MainArea = props => {
                   <input
                     type="date"
                     onChange={handleDeparture}
-                    data-placeholder="Departure Date"
+                    data-placeholder={departureTimePlaceholder}
                   />
                 </div>
+                {isOneWay && (
+                  <div className="arrival-date-spt">
+                    <input
+                      type="date"
+                      onChange={handleArrival}
+                      data-placeholder={arrivalTimePlaceholder}
+                    />
+                  </div>
+                )}
               </div>
               <div className="person-wrapper-spt">
                 <div className="adult-count-spt">
@@ -280,7 +322,11 @@ const MainArea = props => {
           </div>
         </form>
       </div>
-      <div className="mob-mainarea-wrapper-spt">
+      <div
+        className={classnames("mob-mainarea-wrapper-spt", {
+          "mob-mainarea-roundtrip-wrapper-spt": isOneWay
+        })}
+      >
         <div className="mob-mainarea-spt">
           <form onSubmit={handleSubmit} className="mob-form-wrapper-spt">
             <div className="formtitle-wrapper-spt">
@@ -382,9 +428,18 @@ const MainArea = props => {
               <input
                 type="date"
                 onChange={handleDeparture}
-                data-placeholder="Departure Date"
+                data-placeholder={departureTimePlaceholder}
               />
             </div>
+            {isOneWay && (
+              <div className="arrival-date-spt">
+                <input
+                  type="date"
+                  onChange={handleArrival}
+                  data-placeholder={arrivalTimePlaceholder}
+                />
+              </div>
+            )}
 
             <div className="mob-person-wrapper-spt">
               <div className="adult-count-spt">

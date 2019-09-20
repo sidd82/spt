@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import moment from "moment";
 import { MdClose } from "react-icons/md";
@@ -17,34 +17,27 @@ import Footer from "../Symbols/Footer/Footer";
 import PassengerBookingForm from "./PassengerBookingForm";
 import MobFlightBooking from "./MobFlightBooking";
 import FareRules from "./FareRules";
+import FlightConfirmation from "./FlightConfirmation";
 
 const FlightBooking = props => {
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-  });
-
   // This Action is use to get Search Results of a Flight from Store
   const searchFlight = useStoreState(
-    state => state.flights.flightResults[props.match.params.index]
+    state => state.flights.flightResults[0].Result[props.match.params.index]
   );
+  console.log(searchFlight);
   // This Action is use to get SSR Meal Results of a Flight from Store
-  const ssrMealResults = useStoreState(
-    state => state.flights.flightSSR.MealDynamic[0]
-  );
+  // const ssrMealResults = useStoreState(
+  //   state => state.flights.flightSSR.MealDynamic[0]
+  // );
   // This Action is use to get SSR Baggage Results of a Flight from Store
-  const ssrBaggageResults = useStoreState(
-    state => state.flights.flightSSR.Baggage[0]
-  );
+  // const ssrBaggageResults = useStoreState(
+  //   state => state.flights.flightSSR.Baggage[0]
+  // );
   // This Action is use to get Travellers Number in a Flight from Store
   const userSearchData = useStoreState(state => state.ui.userSearchData);
 
   // Converting Time from the Result of a Flight from Store
-  let timeInMinute = searchFlight.Segments[0][0].Duration;
+  let timeInMinute = searchFlight.Segments[0].Duration;
 
   // Adding Taxes to get total amount of the flight
   let totalTax = searchFlight.Fare.Tax + searchFlight.Fare.OtherCharges;
@@ -95,29 +88,8 @@ const FlightBooking = props => {
     return passengerForm;
   };
 
-  // Handle method for Payment Gateway
-  const paymentHandler = e => {
-    e.preventDefault();
-
-    let options = {
-      key: "rzp_test_2g4ouZkn05v9CF",
-      amount: +searchFlight.Fare.PublishedFare * 100,
-      name: "Rahul",
-      description: "flight",
-      handler: res => {
-        alert(res.razorpay_payment_id);
-      },
-      prefill: {
-        name: "Kartish pitale",
-        email: "pitale.kartish@gmail.com"
-      },
-      notes: {
-        address: "Hello world"
-      }
-    };
-
-    let rzp = new window.Razorpay(options);
-    rzp.open();
+  const handleSubmit = () => {
+    // props.history.push("/confirmbooking");
   };
 
   // Keep In Mind Last Line
@@ -147,50 +119,48 @@ const FlightBooking = props => {
                 <div className="flightbooking-details-fb-spt">
                   {/* Airline Part */}
                   <div className="flightbooking-airline-details-fb-spt">
-                    <h3>{searchFlight.Segments[0][0].Airline.AirlineName}</h3>
-                    <p>{`${searchFlight.Segments[0][0].Airline.AirlineCode}-${
-                      searchFlight.Segments[0][0].Airline.FlightNumber
-                    }`}</p>
+                    <h3>{searchFlight.Segments[0].Airline.AirlineName}</h3>
+                    <p>{`${searchFlight.Segments[0].Airline.AirlineCode}-${searchFlight.Segments[0].Airline.FlightNumber}`}</p>
                   </div>
 
                   {/* Departure Part */}
                   <div className="flightbooking-depart-details-fb-spt">
                     <h3>
-                      {searchFlight.Segments[0][0].Origin.Airport.CityName}
-                      <span>{` (${
-                        searchFlight.Segments[0][0].Origin.Airport.CityCode
-                      })`}</span>
+                      {searchFlight.Segments[0].Origin.Airport.CityName}
+                      <span>{` (${searchFlight.Segments[0].Origin.Airport.CityCode})`}</span>
                     </h3>
-                    <p>
-                      {moment(
-                        searchFlight.Segments[0][0].Origin.DepTime
-                      ).format("MMM Do YY")}
-                    </p>
-                    <p>
-                      {moment(
-                        searchFlight.Segments[0][0].Origin.DepTime
-                      ).format("LT")}
-                    </p>
+                    <div>
+                      <p>
+                        {moment(searchFlight.Segments[0].Origin.DepTime).format(
+                          "MMM Do YY"
+                        )}
+                      </p>
+                      <p>
+                        {moment(searchFlight.Segments[0].Origin.DepTime).format(
+                          "LT"
+                        )}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Arrival Part */}
                   <div className="flightbooking-arrival-details-fb-spt">
                     <h3>
-                      {searchFlight.Segments[0][0].Destination.Airport.CityName}
-                      <span>{` (${
-                        searchFlight.Segments[0][0].Destination.Airport.CityCode
-                      })`}</span>
+                      {searchFlight.Segments[0].Destination.Airport.CityName}
+                      <span>{` (${searchFlight.Segments[0].Destination.Airport.CityCode})`}</span>
                     </h3>
-                    <p>
-                      {moment(
-                        searchFlight.Segments[0][0].Destination.ArrTime
-                      ).format("MMM Do YY")}
-                    </p>
-                    <p>
-                      {moment(
-                        searchFlight.Segments[0][0].Destination.ArrTime
-                      ).format("LT")}
-                    </p>
+                    <div>
+                      <p>
+                        {moment(
+                          searchFlight.Segments[0].Destination.ArrTime
+                        ).format("MMM Do YY")}
+                      </p>
+                      <p>
+                        {moment(
+                          searchFlight.Segments[0].Destination.ArrTime
+                        ).format("LT")}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Refundable Part */}
@@ -221,7 +191,7 @@ const FlightBooking = props => {
                   {/* Stops Part */}
                   <div className="flightbooking-stops-details-fb-spt">
                     <h3>
-                      {searchFlight.Segments[0][0].StopOver
+                      {searchFlight.Segments[0].StopOver
                         ? "Stop Over"
                         : "Nonstop"}
                     </h3>
@@ -265,7 +235,7 @@ const FlightBooking = props => {
             <p className="flightbooking-passenger-head-fb-spt">
               Passenger 1 (Adult)
             </p>
-            <form>
+            <form onSubmit={handleSubmit()}>
               <div className="flightbooking-passenger-mainform-fb-spt">
                 <div className="flightbooking-passenger-formcontainer-fb-spt">
                   <div className="flightbooking-pass-formwrap-fb-spt">
@@ -321,7 +291,7 @@ const FlightBooking = props => {
                     </div>
                   </div>
                 </div>
-                <Accordion className="flightbooking-meal-baggage-wrapper-fb-spt">
+                {/* <Accordion className="flightbooking-meal-baggage-wrapper-fb-spt">
                   <AccordionItem
                     title="+ Meal / Excess Baggage For Passenger 1"
                     titleClassName="flightbooking-meal-baggage-title-fb-spt"
@@ -363,7 +333,7 @@ const FlightBooking = props => {
                       </div>
                     </div>
                   </AccordionItem>
-                </Accordion>
+                </Accordion> */}
               </div>
 
               {/* Passengers Part */}
@@ -371,7 +341,17 @@ const FlightBooking = props => {
               {createPassengerForm("Child", "childCount").map(e => e)}
               {createPassengerForm("Infant", "infantCount").map(e => e)}
 
-              <button onClick={paymentHandler}>Book Now</button>
+              <div className="flightbooking-btn-container-fb-spt">
+                <button className="flightbooking-seatmap-btn-fb-spt">
+                  Select Seat
+                </button>
+                <button
+                  className="flightbooking-booking-btn-fb-spt"
+                  // onClick={props.history.push("/confirmbooking")}
+                >
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -102,7 +102,7 @@
   align-items: center;
   width: 100%;
   height: 75%;
-  padding-top: 25px;
+  padding: 25px 0px;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -111,6 +111,7 @@
 .flightbooking-airline-details-fb-spt {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -134,12 +135,14 @@
 .flightbooking-depart-details-fb-spt {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   height: 100%;
 }
 
 .flightbooking-depart-details-fb-spt h3 {
+  text-align: center;
   color: #212121;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
@@ -156,6 +159,7 @@
 }
 
 .flightbooking-depart-details-fb-spt p {
+  text-align: center;
   color: #484848;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -166,6 +170,7 @@
 .flightbooking-arrival-details-fb-spt {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -180,6 +185,7 @@
 }
 
 .flightbooking-arrival-details-fb-spt h3 span {
+  text-align: center;
   color: #212121;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -188,6 +194,7 @@
 }
 
 .flightbooking-arrival-details-fb-spt p {
+  text-align: center;
   color: #484848;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -198,6 +205,7 @@
 .flightbooking-refund-details-fb-spt {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -216,7 +224,7 @@
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 15px;
-  padding-top: 5px;
+  padding: 15px 0px;
   cursor: pointer;
 }
 
@@ -236,6 +244,8 @@
   z-index: 999;
   margin-top: 70px;
   width: 90%;
+  height: 100%;
+  overflow-y: scroll;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -247,7 +257,6 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   padding: 20px 0px;
   text-align: justify;
 }
@@ -273,16 +282,20 @@
   color: #212121;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 10px;
   padding: 0px 50px;
 }
 
 .fb-modal-fareruledetails-spt table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   border-collapse: collapse;
   margin: 10px 0px;
 }
 
 .fb-modal-fareruledetails-spt table tbody {
+  width: 100%;
   background-color: #ffffff;
   border: 1px solid #00000050;
 }
@@ -290,13 +303,22 @@
 .fb-modal-fareruledetails-spt table td b {
   color: #0066cf;
   font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  padding: 15px !important;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 10px !important;
+}
+
+.fb-modal-fareruledetails-spt table td p {
+  color: #0066cf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 0px 10px;
+  cursor: default;
 }
 
 .fb-modal-fareruledetails-spt table td {
-  padding: 10px 15px;
+  padding: 10px;
   color: #484848;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
@@ -794,6 +816,66 @@
   font-size: 13px;
 }
 
+.flightbooking-btn-container-fb-spt {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.flightbooking-seatmap-btn-fb-spt {
+  display: flex;
+  width: 20%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 15px;
+  padding: 5px;
+  background-color: #ffffff;
+  border: 1px solid #0066cf;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #0066cf;
+  cursor: pointer;
+}
+
+.flightbooking-seatmap-btn-fb-spt:hover {
+  transition: 0.2s;
+  background-color: #0066cf;
+  color: #ffffff;
+}
+
+.flightbooking-booking-btn-fb-spt {
+  display: flex;
+  width: 20%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 15px;
+  padding: 5px;
+  background-color: #ffffff;
+  border: 1px solid #0066cf;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #0066cf;
+  cursor: pointer;
+}
+
+.flightbooking-booking-btn-fb-spt:hover {
+  transition: 0.2s;
+  background-color: #0066cf;
+  color: #ffffff;
+}
+
 @media only screen and (max-width: 1023px) {
   .main-container-fb-spt {
     display: none;
@@ -806,14 +888,27 @@
 
   .flightbooking-modal-container-spt {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 990;
+    margin-top: 100px;
     width: 90%;
+    height: 100%;
+    overflow-y: scroll;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .fb-modal-wrapper-spt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 10px;
+    text-align: justify;
   }
 
   .fb-modal-fareruletitle-spt {
@@ -827,8 +922,8 @@
     border-radius: 5px;
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 15px;
     margin-bottom: 20px;
     padding: 5px 0px;
   }
@@ -836,17 +931,21 @@
   .fb-modal-fareruledetails-spt {
     color: #212121;
     font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    padding: 0px 10px;
+    font-weight: 500;
+    font-size: 8px;
+    padding: 0px 5px;
   }
 
   .fb-modal-fareruledetails-spt table {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     border-collapse: collapse;
-    margin: 10px 0px;
+    margin: 1px 0px;
   }
 
   .fb-modal-fareruledetails-spt table tbody {
+    width: 100%;
     background-color: #ffffff;
     border: 1px solid #00000050;
   }
@@ -854,22 +953,25 @@
   .fb-modal-fareruledetails-spt table td b {
     color: #0066cf;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 10px;
-    padding: 0 !important;
+    font-weight: 600;
+    font-size: 8px;
+    padding: 5px !important;
+  }
+
+  .fb-modal-fareruledetails-spt table td p {
+    color: #0066cf;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 8px;
+    padding: 0px 5px;
+    cursor: default;
   }
 
   .fb-modal-fareruledetails-spt table td {
-    padding: 5px 5px;
+    padding: 5px;
     color: #484848;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 10px;
-  }
-
-  .fb-close-modal-spt {
-    position: absolute;
-    top: 1%;
-    right: 1%;
+    font-size: 8px;
   }
 }

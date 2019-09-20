@@ -38,22 +38,24 @@ const SingleFlight = ({ flight, index, history }) => {
 
   // This Action is use to get Trace ID of a Flight from Store
   const flightTraceID = useStoreState(state => state.flights.traceId);
+  const flightTokenID = useStoreState(state => state.flights.tokenId);
 
-  let timeInMinute = flight.Segments[0][0].Duration;
+  let timeInMinute = flight.Segments[0].Duration;
 
   // Handle method for Requesting Fare Rules
   const handleFareRules = () => {
     toggleIsLoading(true);
     const fareRulesData = {
-      EndUserIp: "",
-      TokenId: "",
+      TokenId: flightTokenID,
       TraceId: flightTraceID,
       ResultIndex: flight.ResultIndex
     };
 
     // Creating A Payload To Send Because We Have To Send To Thunk Action
     const payload = {
-      flightRules: fareRulesData
+      flightRules: fareRulesData,
+      history: history,
+      index: index
     };
 
     // Calling The Actions
@@ -70,7 +72,6 @@ const SingleFlight = ({ flight, index, history }) => {
     };
 
     const ssrData = {
-      EndUserIp: "",
       TokenId: "",
       TraceId: flightTraceID,
       ResultIndex: flight.ResultIndex
@@ -93,7 +94,7 @@ const SingleFlight = ({ flight, index, history }) => {
       {/* Airline Part */}
       <div className="single-flight-spt">
         <div className="airline-area-sf-spt">
-          <p>{flight.Segments[0][0].Airline.AirlineName}</p>
+          <p>{flight.Segments[0].Airline.AirlineName}</p>
         </div>
 
         <div className="airline-area-sf-spt airline-flex-sf-spt">
@@ -126,7 +127,7 @@ const SingleFlight = ({ flight, index, history }) => {
           </div>
           <div className="title-departure-sf-spt">
             <p>
-              {moment(flight.Segments[0][0].Origin.DepTime).format("MMM Do YY")}
+              {moment(flight.Segments[0].Origin.DepTime).format("MMM Do YY")}
             </p>
           </div>
         </div>
@@ -136,7 +137,7 @@ const SingleFlight = ({ flight, index, history }) => {
             <MdAccessTime size="1.2rem" color="#707070" />
           </div>
           <div className="text-departure-sf-spt">
-            <p>{moment(flight.Segments[0][0].Origin.DepTime).format("LT")}</p>
+            <p>{moment(flight.Segments[0].Origin.DepTime).format("LT")}</p>
           </div>
         </div>
 
@@ -145,7 +146,7 @@ const SingleFlight = ({ flight, index, history }) => {
             <MdPlace size="1.2rem" color="#707070" />
           </div>
           <div className="text-departure-sf-spt">
-            <p>{flight.Segments[0][0].Origin.Airport.CityName}</p>
+            <p>{flight.Segments[0].Origin.Airport.CityName}</p>
           </div>
         </div>
       </div>
@@ -165,7 +166,7 @@ const SingleFlight = ({ flight, index, history }) => {
           </div>
           <div className="title-arrival-sf-spt">
             <p>
-              {moment(flight.Segments[0][0].Destination.ArrTime).format(
+              {moment(flight.Segments[0].Destination.ArrTime).format(
                 "MMM Do YY"
               )}
             </p>
@@ -177,9 +178,7 @@ const SingleFlight = ({ flight, index, history }) => {
             <MdAccessTime size="1.2rem" color="#707070" />
           </div>
           <div className="text-arrival-sf-spt">
-            <p>
-              {moment(flight.Segments[0][0].Destination.ArrTime).format("LT")}
-            </p>
+            <p>{moment(flight.Segments[0].Destination.ArrTime).format("LT")}</p>
           </div>
         </div>
 
@@ -188,7 +187,7 @@ const SingleFlight = ({ flight, index, history }) => {
             <MdPlace size="1.2rem" color="#707070" />
           </div>
           <div className="text-arrival-sf-spt">
-            <p>{flight.Segments[0][0].Destination.Airport.CityName}</p>
+            <p>{flight.Segments[0].Destination.Airport.CityName}</p>
           </div>
         </div>
       </div>
@@ -202,7 +201,7 @@ const SingleFlight = ({ flight, index, history }) => {
         </div>
         <div className="duration-area-sf-spt">
           <div className="text-duration-sf-spt">
-            <p>{flight.Segments[0][0].StopOver ? "Stop Over" : "Nonstop"}</p>
+            <p>{flight.Segments[0].StopOver ? "Stop Over" : "Nonstop"}</p>
           </div>
         </div>
         <br />
@@ -218,7 +217,7 @@ const SingleFlight = ({ flight, index, history }) => {
             className="book-button-sf-spt"
             onClick={() => {
               handleFareRules();
-              handleFareQuote();
+              // handleFareQuote();
             }}
           >
             <p>Book Now</p>

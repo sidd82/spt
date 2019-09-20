@@ -31,22 +31,24 @@ const MobileSingleFlight = ({ flight, index, history }) => {
 
   // This Action is use to get Trace ID of a Flight from Store
   const flightTraceID = useStoreState(state => state.flights.traceId);
+  const flightTokenID = useStoreState(state => state.flights.tokenId);
 
-  let timeInMinute = flight.Segments[0][0].Duration;
+  let timeInMinute = flight.Segments[0].Duration;
 
   // Handle method for Requesting Fare Rules
   const handleFareRules = () => {
     toggleIsLoading(true);
     const fareRulesData = {
-      EndUserIp: "",
-      TokenId: "",
+      TokenId: flightTokenID,
       TraceId: flightTraceID,
       ResultIndex: flight.ResultIndex
     };
 
     // Creating A Payload To Send Because We Have To Send To Thunk Action
     const payload = {
-      flightRules: fareRulesData
+      flightRules: fareRulesData,
+      history: history,
+      index: index
     };
 
     // Calling The Actions
@@ -85,8 +87,8 @@ const MobileSingleFlight = ({ flight, index, history }) => {
       <div className="mob-singleflight-details-spt">
         <div className="mob-singleflight-flights-spt">
           <div className="mob-singleflight-depart-spt">
-            <h6>{moment(flight.Segments[0][0].Origin.DepTime).format("LT")}</h6>
-            <p>{flight.Segments[0][0].Origin.Airport.CityName}</p>
+            <h6>{moment(flight.Segments[0].Origin.DepTime).format("LT")}</h6>
+            <p>{flight.Segments[0].Origin.Airport.CityName}</p>
           </div>
           <div className="mob-singleflight-gap-spt">
             <MdFlightTakeoff
@@ -98,9 +100,9 @@ const MobileSingleFlight = ({ flight, index, history }) => {
           </div>
           <div className="mob-singleflight-arrival-spt">
             <h6>
-              {moment(flight.Segments[0][0].Destination.DepTime).format("LT")}
+              {moment(flight.Segments[0].Destination.DepTime).format("LT")}
             </h6>
-            <p>{flight.Segments[0][0].Destination.Airport.CityName}</p>
+            <p>{flight.Segments[0].Destination.Airport.CityName}</p>
           </div>
         </div>
         <div className="mob-singleflight-price-spt">
@@ -109,7 +111,7 @@ const MobileSingleFlight = ({ flight, index, history }) => {
             className="mob-book-button-sf-spt"
             onClick={() => {
               handleFareRules();
-              handleFareQuote();
+              // handleFareQuote();
             }}
           >
             <p>Book Now</p>
@@ -124,11 +126,11 @@ const MobileSingleFlight = ({ flight, index, history }) => {
           <span className="mob-singleflight-duration-spt">
             {Math.floor(timeInMinute / 60) + "h " + (timeInMinute % 60) + "m"}
           </span>{" "}
-          | {flight.Segments[0][0].StopOver ? "Stop Over" : "Nonstop"}
+          | {flight.Segments[0].StopOver ? "Stop Over" : "Nonstop"}
         </p>
       </div>
       <div className="mob-singleflight-airline-spt">
-        <p>{flight.Segments[0][0].Airline.AirlineName}</p>
+        <p>{flight.Segments[0].Airline.AirlineName}</p>
       </div>
     </div>
   );
