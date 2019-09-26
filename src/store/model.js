@@ -23,13 +23,28 @@ const flightsModel = {
   // The Thunk Function To Get Flight Data
   getFlights: thunk(async (actions, payload, { getStoreActions }) => {
     console.log(payload.flightRequest);
-    const response = await axios.post(
-      `${URI}/AirSearch`,
-      payload.flightRequest
-    );
     try {
+      const response = await axios.post(
+        `${URI}/AirSearch`,
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          auth: {
+            username: "SPTCoreCelo",
+            password: "SPTc@reCel@1920"
+          }
+        },
+        payload.flightRequest
+      );
+
+      console.log(response.data);
       // Firing A Action After Getting Data
-      actions.addFlights(response.data.Response[0].Results);
+      actions.addFlights(response.data.Response[0]);
       // Fiering A Set TraceId Action
       actions.addTraceId(response.data.Response[0].TraceId);
       // Fiering A Set TokenId Action

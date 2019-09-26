@@ -70,7 +70,6 @@ const MainArea = props => {
                 Origin: origin,
                 Destination: destination,
                 DepartureDateTime: departureTime
-                // PreferredArrivalTime: departureTime
               }
             ]
           : [
@@ -78,13 +77,11 @@ const MainArea = props => {
                 Origin: origin,
                 Destination: destination,
                 DepartureDateTime: departureTime
-                // PreferredArrivalTime: departureTime
               },
               {
                 Origin: destination,
                 Destination: origin,
                 DepartureDateTime: arrivalTime
-                // PreferredArrivalTime: departureTime
               }
             ]
     };
